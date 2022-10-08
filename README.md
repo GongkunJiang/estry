@@ -1,0 +1,3 @@
+# eswin
+magnet:?xt=urn:btih:a14ea1de9768143373963d27cbd20910edf2e99e&dn=zh-cn_windows_10_business_editions_version_21h2_updated_sep_2022_x64_dvd_1015341c.iso&xl=5953437696
+ed2k://|file|zh-cn_windows_10_business_editions_version_21h2_updated_sep_2022_x64_dvd_1015341c.iso|5953437696|675DE5A0347441218A10C1270BF75035|/
