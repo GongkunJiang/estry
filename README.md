@@ -1,31 +1,33 @@
-"show line number
-set nu
+repo init -u ssh://jianggongkun@gerrit.eswincomputing.com:29418/e315s/manifest -b e315s-d_saas --repo-url=ssh://jianggongkun@gerrit.eswincomputing.com:29418/tools/git-repo
+repo sync -cdj4 --no-tags
 
-"highlight search
-set hls
+From ssh://gerrit.eswincomputing.com:29418/eswin/fota_saas
+ * [new branch]      e315s-d_saas -> origin/e315s-d_saas
 
-"enable search parent directory
-set tag=./tags;
-set tags+=~/myWorkPlace/eswin/mbedtls-2.7.17/tags
 
-"tabstop i.e. indent
-set ts=4
+gcc main.c -o eswin_fota_sign -L. -lmbedcrypto -I../../mbedtls-2.27.0/include -I..
+gcc main.c ../signing.c -o eswin_fota_sign -L. -lmbedcrypto -I../../mbedtls-2.27.0/include
 
-"disable tab to space
-set noexpandtab
+./eswin_fota_sign -d sha256 ../priv_key/rsa_private_key.pem ./in/image ./out/hash.sig
+./eswin_fota_sign -d sha256 ../priv_key/ec_private_key.pem ./in/image ./out/hash.sig
 
-"hide invisible characters
-set nolist
+openssl ecparam -name secp256r1 -genkey -noout -out ../priv_key/ec_private_key.pem
+openssl pkey -in ../priv_key/ec_private_key.pem -pubout -out ./pub_key/ec_public_key.pem
 
-"auto indent
-set ai
 
-" 状态栏
-set laststatus=2      " 总是显示状态栏
-highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
-" 获取当前路径，将$HOME转化为~
-function! CurDir()
-        let curdir = substitute(getcwd(), $HOME, "~", "g")
-        return curdir
-endfunction
-set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
+[signing] Add mbedtls library and signing interface.
+
+Issue: BECM-409
+
+git commit --amend
+git push origin HEAD:refs/for/e315s-d_saas
+
+ln -sT ../../../external/mbedtls-2.27.0 mbedtls-2.27.0
+
+coding_format.sh
+
+git rebase origin/e315s-d_saas
+
+
+# error while loading shared libraries: libgmssl.so.3
+sudo ldconfig
