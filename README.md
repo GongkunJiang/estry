@@ -6,3 +6,9 @@ repo forall -c git lfs pull
 分支名可用e315s-d_sf，e315s-d_sme，e315s-d_saas 任一替换。
 
 PubkeyAcceptedKeyTypes=+ssh-rsa
+
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get update
+sudo apt-get install sublime-text
+sudo apt-get install apt-transport-https
