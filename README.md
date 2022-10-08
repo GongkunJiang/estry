@@ -5,3 +5,4 @@ repo forall -c git lfs pull
 
 分支名可用e315s-d_sf，e315s-d_sme，e315s-d_saas 任一替换。
 
+PubkeyAcceptedKeyTypes=+ssh-rsa
