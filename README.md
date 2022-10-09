@@ -12,3 +12,5 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt-get update
 sudo apt-get install sublime-text
 sudo apt-get install apt-transport-https
+
+VBoxGuestAdditions_6.1.38.iso
