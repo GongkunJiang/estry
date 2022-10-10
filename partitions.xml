@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<PARTITIONS>
+    <PARTITION dev_type="0" name="partition" offset="0x0" size="0x1000" flag="TYPE_BIN" fota_flags="FOTA_FORBIDE" img="ecm9100_partition.bin" />
+    <PARTITION dev_type="0" name="boot_flag" offset="0x1000" size="0x1000" flag="TYPE_BIN" fota_flags="FOTA_NONE" img="ecm9100_boot_flag.bin" />
+    <PARTITION dev_type="0" name="boot_flag_bak" offset="0x2000" size="0x1000" flag="TYPE_BIN" fota_flags="FOTA_NONE" img="ecm9100_boot_flag.bin" />
+    <PARTITION dev_type="0" name="uboot" offset="0x3000" size="0x8000" flag="TYPE_EXEC" fota_flags="FOTA_FORBIDE" img="ecm9100_uboot.bin" />
+    <PARTITION dev_type="0" name="recovery" offset="0xB000" size="0x10000" flag="TYPE_BIN" fota_flags="FOTA_FORBIDE" img="ecm9100_recovery.bin" />
+    <PARTITION dev_type="0" name="nv_amt" offset="0x1B000" size="0x8000" flag="TYPE_FACTORY" fota_flags="FOTA_FORBIDE" img="ecm9100_nv_amt.bin" />
+    <PARTITION dev_type="0" name="nv_phy" offset="0x23000" size="0x8000" flag="TYPE_BIN" fota_flags="FOTA_OVERRIDE" img="ecm9100_nv_phy.bin" />
+    <PARTITION dev_type="0" name="nv_sys" offset="0x2B000" size="0x2000" flag="TYPE_BIN" fota_flags="FOTA_OVERRIDE" img="ecm9100_nv_sys.bin" />
+    <PARTITION dev_type="0" name="nv_customer" offset="0x2D000" size="0x8000" flag="TYPE_BIN" fota_flags="FOTA_OVERRIDE" img="ecm9100_nv_cus.bin" />
+    <PARTITION dev_type="0" name="user_fs" offset="0x35000" size="0x43000" flag="TYPE_BIN" fota_flags="FOTA_FS" img="ecm9100_user_fs.bin" />
+    <PARTITION dev_type="0" name="sw_ap" offset="0x78000" size="0xC8000" flag="TYPE_EXEC" fota_flags="FOTA_DIFF" img="ecm9100_ap.bin" />
+	<PARTITION dev_type="0" name="ota" offset="0x140000" size="0xC0000" flag="TYPE_NONE" fota_flags="FOTA_NONE" img="" />
+	<PARTITION dev_type="0" name="sw_cp" offset="0x200000" size="0x400000" flag="TYPE_EXEC" fota_flags="FOTA_DIFF" img="ecm9100_cp.bin" />
+</PARTITIONS>
