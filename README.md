@@ -15,3 +15,5 @@ sudo apt-get install apt-transport-https
 
 VBoxGuestAdditions_6.1.38.iso
 sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
+
+https://github.com/llvm/llvm-project/releases/
