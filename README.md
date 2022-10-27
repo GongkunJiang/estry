@@ -19,3 +19,5 @@ sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev
 https://github.com/llvm/llvm-project/releases/
 
 https://github.com/buildroot/buildroot/archive/2019.02.2/buildroot-2019.02.2.tar.gz
+
+https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/1.13.3/vspackage?targetPlatform=linux-arm64
