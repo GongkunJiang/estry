@@ -22,3 +22,4 @@ https://github.com/buildroot/buildroot/archive/2019.02.2/buildroot-2019.02.2.tar
 https://marketplace.visualstudio.com/search?target=VSCode&category=All%20categories&sortBy=Installs
 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/1.13.3/vspackage?targetPlatform=linux-arm64
 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/1.13.3/vspackage?targetPlatform=linux-x64
+https://packages.emqx.net/MQTTX/v1.8.3/MQTTX_1.8.3_amd64.snap
