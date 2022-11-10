@@ -149,3 +149,5 @@ sw/applications
 	│   ├── inc						# FOTA update agent client application headers.
 	│   └── port					# FOTA update agent client application porting code.
 	└── ta 							# FOTA update agent trusted application.
+
+git clone --recurse-submodules https://github.com/eclipse/wakaama.git
