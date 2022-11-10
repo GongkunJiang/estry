@@ -23,7 +23,7 @@ https://marketplace.visualstudio.com/search?target=VSCode&category=All%20categor
 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/1.13.3/vspackage?targetPlatform=linux-arm64
 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/1.13.3/vspackage?targetPlatform=linux-x64
 https://packages.emqx.net/MQTTX/v1.8.3/MQTTX_1.8.3_amd64.snap
-
+	https://repo.almalinux.org/almalinux/9/BaseOS/aarch64/os/Packages/glibc-2.34-28.el9_0.2.aarch64.rpm
 https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/linux-6.1-rc4.tar.gz
 # server
 ## 检测版本号
