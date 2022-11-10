@@ -24,7 +24,7 @@ https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/v
 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-vscode/vsextensions/cpptools/1.13.3/vspackage?targetPlatform=linux-x64
 https://packages.emqx.net/MQTTX/v1.8.3/MQTTX_1.8.3_amd64.snap
 
-
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/snapshot/linux-6.1-rc4.tar.gz
 # server
 ## 检测版本号
 read 0 /3/0/3
