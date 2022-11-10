@@ -77,3 +77,19 @@ notify Idle
 8: Firmware update failed. 
 9: Unsupported protocol.
 
+sudo apt update
+# python python-crypto
+sudo apt install android-tools-adb android-tools-fastboot autoconf \
+        automake bc bison build-essential cscope curl device-tree-compiler \
+        expect flex ftp-upload gdisk iasl libattr1-dev libc6:i386 libcap-dev \
+        libftdi-dev libglib2.0-dev libhidapi-dev libncurses5-dev \
+        libpixman-1-dev libssl-dev libstdc++6:i386 libtool libz1:i386 make \
+        mtools netcat unzip uuid-dev \
+        xdg-utils xterm xz-utils zlib1g-dev git libdivsufsort-dev libbz2-dev
+
+sudo tar -xvf gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu.tar -C /opt/
+sudo tar -xvf gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar -C /opt/
+sudo vim ~/.bashrc
+PATH=$PATH:/opt/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin
+PATH=$PATH:/opt/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin
+source ~/.bashrc
