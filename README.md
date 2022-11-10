@@ -93,3 +93,30 @@ sudo vim ~/.bashrc
 PATH=$PATH:/opt/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin
 PATH=$PATH:/opt/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin
 source ~/.bashrc
+
+
+dl
+├── arm-trusted-firmware
+│   └── arm-trusted-firmware-xilinx-v2018.2.tar.gz
+├── buildroot
+│   └── buildroot-2019.02.2.tar.gz
+├── cJSON
+│   └── cJSON-v1.7.7.tar.gz
+├── entropy_assess
+│   └── entropy_assess-v1.0.tar.gz
+├── linux
+│   └── linux-xilinx-v2018.2.tar.gz
+├── mbedtls
+│   └── mbedtls-2.16.0-apache.tgz
+├── openssl
+│   └── openssl-1.1.1.tar.gz
+├── optee_client
+│   └── optee_client-3.5.0.tar.gz
+├── optee_os
+│   └── optee_os-3.5.0.tar.gz
+├── paho_mqtt
+│   └── paho_mqtt-v1.1.0.tar.gz
+├── u-boot
+│   └── u-boot-xilinx-v2018.2.tar.gz
+└── wakaama
+    └── wakaama-3e038d3abb8d398bba2373815a05308d41774aa1.tar.gz
