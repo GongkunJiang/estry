@@ -129,3 +129,23 @@ cp .clang-format /home/jgk/Desktop/JY1021/sw/applications/updateservice/host/cor
 
 ./coding_format.sh /home/jgk/Desktop/JY1021/sw/applications/updateservice/host/core
 ./coding_format.sh /home/jgk/Desktop/JY1021/sw/applications/fota/host/core
+
+
+sw/applications
+├── fota
+│	├── host
+│	│   ├── core					# FOTA download agent client application scrambled code.
+│	│   ├── inc						# FOTA download agent client application headers.
+│	│   └── src						# FOTA download agent client application code.
+│	│ 		├── creds				# MQTT client credentials.
+│	│ 		├── paho_mqtt_embedded	# MQTT source code.
+│	│ 		├── msg_client.c		# MQTT client's sample implementation.
+│	│ 		└── port.c  			# FOTA download agent client application porting code.
+│	└── ta 							# FOTA download agent trusted application.
+└── updateservice
+	├── creds 						# FOTA update agent credentials.
+	├── host
+	│   ├── core					# FOTA update agent client application scrambled code.
+	│   ├── inc						# FOTA update agent client application headers.
+	│   └── port					# FOTA update agent client application porting code.
+	└── ta 							# FOTA update agent trusted application.
