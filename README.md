@@ -120,3 +120,12 @@ dl
 │   └── u-boot-xilinx-v2018.2.tar.gz
 └── wakaama
     └── wakaama-3e038d3abb8d398bba2373815a05308d41774aa1.tar.gz
+
+./coding_format.sh /home/jgk/Desktop/JY1021/sw/applications/updateservice/host/core
+./coding_format.sh /home/jgk/Desktop/JY1021/sw/applications/fota/host/core
+
+cp .clang-format /home/jgk/Desktop/JY1021/sw/applications/fota/host/core
+cp .clang-format /home/jgk/Desktop/JY1021/sw/applications/updateservice/host/core
+
+./coding_format.sh /home/jgk/Desktop/JY1021/sw/applications/updateservice/host/core
+./coding_format.sh /home/jgk/Desktop/JY1021/sw/applications/fota/host/core
