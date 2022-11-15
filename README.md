@@ -151,3 +151,11 @@ sw/applications
 	└── ta 							# FOTA update agent trusted application.
 
 git clone --recurse-submodules https://github.com/eclipse/wakaama.git
+
+
+
+# Generate public key content
+fotakey-header      := src/creds/generated/mqttkey.h
+fotakey-bin         := src/creds/rsapubkey.pem
+$(fotakey-header): $(fotakey-bin)
+	$(call fcheck,bin2h,$<,mqtt_key,,"static const",,,)
