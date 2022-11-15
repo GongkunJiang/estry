@@ -159,3 +159,8 @@ fotakey-header      := src/creds/generated/mqttkey.h
 fotakey-bin         := src/creds/rsapubkey.pem
 $(fotakey-header): $(fotakey-bin)
 	$(call fcheck,bin2h,$<,mqtt_key,,"static const",,,)
+
+fotakey-header      := ./inc/generated/fotakey.h
+fotakey-bin         := ./../creds/fotapubkey.pem
+$(fotakey-header): $(fotakey-bin)
+	$(call fcheck,bin2h,$<,fotapubkey,,"static const",,,)
