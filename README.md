@@ -164,3 +164,5 @@ fotakey-header      := ./inc/generated/fotakey.h
 fotakey-bin         := ./../creds/fotapubkey.pem
 $(fotakey-header): $(fotakey-bin)
 	$(call fcheck,bin2h,$<,fotapubkey,,"static const",,,)
+
+target_compile_definitions(${target} PRIVATE LWM2M_WITH_LOGS)
