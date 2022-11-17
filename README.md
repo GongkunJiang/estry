@@ -151,7 +151,102 @@ sw/applications
 	└── ta 							# FOTA update agent trusted application.
 
 git clone --recurse-submodules https://github.com/eclipse/wakaama.git
+jgk@E0004941:~/Desktop/wakaama/build-wakaama/examples/client$ lwm2mclient
+Trying to bind LWM2M Client to port 56830
+[lwm2m_init:65] Entering
+[lwm2m_configure:272] endpointName: "testlwm2mclient", msisdn: "", altPath: "", numObject: 9
+LWM2M Client "testlwm2mclient" started on port 56830
+> [lwm2m_step:381] timeoutP: 60
+[lwm2m_step:386] State: STATE_INITIAL
+[object_getServers:1040] Entering
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_encode_bool:519] value: false
+[lwm2m_data_decode_bool:529] Entering
+[lwm2m_data_decode_bool:580] result: 1, value: false
+[lwm2m_data_free:178] size: 1
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_encode_int:289] value: 123
+[lwm2m_data_decode_int:299] Entering
+[lwm2m_data_decode_int:362] result: 1, value: 123
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_encode_int:289] value: 123
+[lwm2m_data_decode_int:299] Entering
+[lwm2m_data_decode_int:362] result: 1, value: 123
+[lwm2m_data_free:178] size: 1
+[lwm2m_data_new:160] size: 2
+[lwm2m_data_encode_int:289] value: 300
+[lwm2m_data_encode_string:214] "U"
+[lwm2m_data_decode_int:299] Entering
+[lwm2m_data_decode_int:362] result: 1, value: 300
+[lwm2m_data_free:178] size: 2
+[lwm2m_data_free:178] size: 1
+[registration_start:1028] State: STATE_REGISTER_REQUIRED
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_free:178] size: 1
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_free:178] size: 1
+[observe_step:521] Entering
+[registration_step:2054] State: STATE_REGISTERING
+[object_getRegisterPayloadBufferLength:788] Entering
+[object_getRegisterPayload:886] Entering
+Opening connection to server at ::1:5683
+[transaction_new:160] method: 2, altPath: "", mID: 38577, token_len: 4
+[transaction_new:162] NULL
+[transaction_new:242] Exiting on success. new transac=0x560d08da13d0
+[transaction_send:373] Entering: transaction=0x560d08da13d0
+Sending 195 bytes to [::1]:5683
+44 02 96 B1  B1 96 D4 FD  B2 72 64 11  28 39 6C 77   D........rd.(9lw
+6D 32 6D 3D  31 2E 31 0D  05 65 70 3D  74 65 73 74   m2m=1.1..ep=test
+6C 77 6D 32  6D 63 6C 69  65 6E 74 03  62 3D 55 06   lwm2mclient.b=U.
+6C 74 3D 33  30 30 FF 3C  2F 3E 3B 72  74 3D 22 6F   lt=300.</>;rt="o
+6D 61 2E 6C  77 6D 32 6D  22 3B 63 74  3D 31 31 30   ma.lwm2m";ct=110
+2C 3C 2F 31  3E 3B 76 65  72 3D 31 2E  31 2C 3C 2F   ,</1>;ver=1.1,</
+31 2F 30 3E  2C 3C 2F 32  2F 30 3E 2C  3C 2F 33 2F   1/0>,</2/0>,</3/
+30 3E 2C 3C  2F 34 2F 30  3E 2C 3C 2F  35 2F 30 3E   0>,</4/0>,</5/0>
+2C 3C 2F 36  2F 30 3E 2C  3C 2F 37 2F  30 3E 2C 3C   ,</6/0>,</7/0>,<
+2F 33 31 30  32 34 3E 3B  76 65 72 3D  31 2E 30 2C   /31024>;ver=1.0,
+3C 2F 33 31  30 32 34 2F  31 30 3E 2C  3C 2F 33 31   </31024/10>,</31
+30 32 34 2F  31 31 3E 2C  3C 2F 33 31  30 32 34 2F   024/11>,</31024/
+31 32 3E                                             12>
+[transaction_step:460] Entering
+[lwm2m_step:488] Final timeoutP: 2
+[lwm2m_step:490] Final state: STATE_REGISTERING
+ -> State: STATE_REGISTERING
+13 bytes received from [::1]:5683
+64 41 96 B1  B1 96 D4 FD  82 72 64 01  30  dA.......rd.0
+[lwm2m_handle_packet:485] Entering
+[lwm2m_handle_packet:492] Parsed: ver 1, type 2, tkl 4, code 2.01, mid 38577, Content type: 0
+[lwm2m_handle_packet:494] Payload: 
+[transaction_handleResponse:296] Entering
+[prv_handleRegistrationReply:670] 123 Registration successful
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_free:178] size: 1
+[transaction_remove:282] Entering. transaction=0x560d08da13d0
+[transaction_free:258] Entering. transaction=0x560d08da13d0
+[lwm2m_step:381] timeoutP: 60
+[lwm2m_step:386] State: STATE_REGISTERING
+[registration_getStatus:1094] State: STATE_REGISTERING
+[registration_getStatus:1101] 123 status: STATE_REGISTERED
+[registration_getStatus:1125] reg_status: STATE_REGISTERED
+[observe_step:521] Entering
+[registration_step:2054] State: STATE_READY
+[transaction_step:460] Entering
+[lwm2m_step:488] Final timeoutP: 60
+[lwm2m_step:490] Final state: STATE_READY
+ -> State: STATE_READY
+quit
 
+[lwm2m_close:184] Entering
+[lwm2m_deregister:83] Entering
+[registration_deregister:1157] State: STATE_READY, 123 status: STATE_REGISTERED
+[transaction_new:160] method: 4, altPath: "", mID: 38578, token_len: 4
+[transaction_new:162] NULL
+[transaction_new:242] Exiting on success. new transac=0x560d08da13d0
+[transaction_send:373] Entering: transaction=0x560d08da13d0
+Sending 13 bytes to [::1]:5683
+44 04 96 B2  B2 96 EC FD  B2 72 64 01  30  D........rd.0
+[transaction_free:258] Entering. transaction=0x560d08da13d0
+jgk@E0004941:~/Desktop/wakaama/build-wakaama/examples/client$ 
 
 
 # Generate public key content
@@ -166,3 +261,173 @@ $(fotakey-header): $(fotakey-bin)
 	$(call fcheck,bin2h,$<,fotapubkey,,"static const",,,)
 
 target_compile_definitions(${target} PRIVATE LWM2M_WITH_LOGS)
+
+
+jgk@E0004941:~/Desktop/wakaama/build-wakaama/examples/client$ lwm2mclient
+Trying to bind LWM2M Client to port 56830
+[lwm2m_init:65] Entering
+[lwm2m_configure:272] endpointName: "testlwm2mclient", msisdn: "", altPath: "", numObject: 9
+LWM2M Client "testlwm2mclient" started on port 56830
+> [lwm2m_step:381] timeoutP: 60
+[lwm2m_step:386] State: STATE_INITIAL
+[object_getServers:1040] Entering
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_encode_bool:519] value: false
+[lwm2m_data_decode_bool:529] Entering
+[lwm2m_data_decode_bool:580] result: 1, value: false
+[lwm2m_data_free:178] size: 1
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_encode_int:289] value: 123
+[lwm2m_data_decode_int:299] Entering
+[lwm2m_data_decode_int:362] result: 1, value: 123
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_encode_int:289] value: 123
+[lwm2m_data_decode_int:299] Entering
+[lwm2m_data_decode_int:362] result: 1, value: 123
+[lwm2m_data_free:178] size: 1
+[lwm2m_data_new:160] size: 2
+[lwm2m_data_encode_int:289] value: 300
+[lwm2m_data_encode_string:214] "U"
+[lwm2m_data_decode_int:299] Entering
+[lwm2m_data_decode_int:362] result: 1, value: 300
+[lwm2m_data_free:178] size: 2
+[lwm2m_data_free:178] size: 1
+[registration_start:1028] State: STATE_REGISTER_REQUIRED
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_free:178] size: 1
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_free:178] size: 1
+[observe_step:521] Entering
+[registration_step:2054] State: STATE_REGISTERING
+[object_getRegisterPayloadBufferLength:788] Entering
+[object_getRegisterPayload:886] Entering
+Opening connection to server at ::1:5683
+[transaction_new:160] method: 2, altPath: "", mID: 38577, token_len: 4
+[transaction_new:162] NULL
+[transaction_new:242] Exiting on success. new transac=0x560d08da13d0
+[transaction_send:373] Entering: transaction=0x560d08da13d0
+Sending 195 bytes to [::1]:5683
+44 02 96 B1  B1 96 D4 FD  B2 72 64 11  28 39 6C 77   D........rd.(9lw
+6D 32 6D 3D  31 2E 31 0D  05 65 70 3D  74 65 73 74   m2m=1.1..ep=test
+6C 77 6D 32  6D 63 6C 69  65 6E 74 03  62 3D 55 06   lwm2mclient.b=U.
+6C 74 3D 33  30 30 FF 3C  2F 3E 3B 72  74 3D 22 6F   lt=300.</>;rt="o
+6D 61 2E 6C  77 6D 32 6D  22 3B 63 74  3D 31 31 30   ma.lwm2m";ct=110
+2C 3C 2F 31  3E 3B 76 65  72 3D 31 2E  31 2C 3C 2F   ,</1>;ver=1.1,</
+31 2F 30 3E  2C 3C 2F 32  2F 30 3E 2C  3C 2F 33 2F   1/0>,</2/0>,</3/
+30 3E 2C 3C  2F 34 2F 30  3E 2C 3C 2F  35 2F 30 3E   0>,</4/0>,</5/0>
+2C 3C 2F 36  2F 30 3E 2C  3C 2F 37 2F  30 3E 2C 3C   ,</6/0>,</7/0>,<
+2F 33 31 30  32 34 3E 3B  76 65 72 3D  31 2E 30 2C   /31024>;ver=1.0,
+3C 2F 33 31  30 32 34 2F  31 30 3E 2C  3C 2F 33 31   </31024/10>,</31
+30 32 34 2F  31 31 3E 2C  3C 2F 33 31  30 32 34 2F   024/11>,</31024/
+31 32 3E                                             12>
+[transaction_step:460] Entering
+[lwm2m_step:488] Final timeoutP: 2
+[lwm2m_step:490] Final state: STATE_REGISTERING
+ -> State: STATE_REGISTERING
+13 bytes received from [::1]:5683
+64 41 96 B1  B1 96 D4 FD  82 72 64 01  30  dA.......rd.0
+[lwm2m_handle_packet:485] Entering
+[lwm2m_handle_packet:492] Parsed: ver 1, type 2, tkl 4, code 2.01, mid 38577, Content type: 0
+[lwm2m_handle_packet:494] Payload: 
+[transaction_handleResponse:296] Entering
+[prv_handleRegistrationReply:670] 123 Registration successful
+[lwm2m_data_new:160] size: 1
+[lwm2m_data_free:178] size: 1
+[transaction_remove:282] Entering. transaction=0x560d08da13d0
+[transaction_free:258] Entering. transaction=0x560d08da13d0
+[lwm2m_step:381] timeoutP: 60
+[lwm2m_step:386] State: STATE_REGISTERING
+[registration_getStatus:1094] State: STATE_REGISTERING
+[registration_getStatus:1101] 123 status: STATE_REGISTERED
+[registration_getStatus:1125] reg_status: STATE_REGISTERED
+[observe_step:521] Entering
+[registration_step:2054] State: STATE_READY
+[transaction_step:460] Entering
+[lwm2m_step:488] Final timeoutP: 60
+[lwm2m_step:490] Final state: STATE_READY
+ -> State: STATE_READY
+quit
+
+[lwm2m_close:184] Entering
+[lwm2m_deregister:83] Entering
+[registration_deregister:1157] State: STATE_READY, 123 status: STATE_REGISTERED
+[transaction_new:160] method: 4, altPath: "", mID: 38578, token_len: 4
+[transaction_new:162] NULL
+[transaction_new:242] Exiting on success. new transac=0x560d08da13d0
+[transaction_send:373] Entering: transaction=0x560d08da13d0
+Sending 13 bytes to [::1]:5683
+44 04 96 B2  B2 96 EC FD  B2 72 64 01  30  D........rd.0
+[transaction_free:258] Entering. transaction=0x560d08da13d0
+jgk@E0004941:~/Desktop/wakaama/build-wakaama/examples/client$ 
+
+jgk@E0004941:~/Desktop/wakaama/build-wakaama/examples/server$ lwm2mserver 
+[lwm2m_init:65] Entering
+> [lwm2m_set_monitoring_callback:2039] Entering
+[lwm2m_step:381] timeoutP: 60
+[registration_step:2129] Entering
+[transaction_step:460] Entering
+[lwm2m_step:488] Final timeoutP: 60
+195 bytes received from [::1]:56830
+44 02 96 B1  B1 96 D4 FD  B2 72 64 11  28 39 6C 77   D........rd.(9lw
+6D 32 6D 3D  31 2E 31 0D  05 65 70 3D  74 65 73 74   m2m=1.1..ep=test
+6C 77 6D 32  6D 63 6C 69  65 6E 74 03  62 3D 55 06   lwm2mclient.b=U.
+6C 74 3D 33  30 30 FF 3C  2F 3E 3B 72  74 3D 22 6F   lt=300.</>;rt="o
+6D 61 2E 6C  77 6D 32 6D  22 3B 63 74  3D 31 31 30   ma.lwm2m";ct=110
+2C 3C 2F 31  3E 3B 76 65  72 3D 31 2E  31 2C 3C 2F   ,</1>;ver=1.1,</
+31 2F 30 3E  2C 3C 2F 32  2F 30 3E 2C  3C 2F 33 2F   1/0>,</2/0>,</3/
+30 3E 2C 3C  2F 34 2F 30  3E 2C 3C 2F  35 2F 30 3E   0>,</4/0>,</5/0>
+2C 3C 2F 36  2F 30 3E 2C  3C 2F 37 2F  30 3E 2C 3C   ,</6/0>,</7/0>,<
+2F 33 31 30  32 34 3E 3B  76 65 72 3D  31 2E 30 2C   /31024>;ver=1.0,
+3C 2F 33 31  30 32 34 2F  31 30 3E 2C  3C 2F 33 31   </31024/10>,</31
+30 32 34 2F  31 31 3E 2C  3C 2F 33 31  30 32 34 2F   024/11>,</31024/
+31 32 3E                                             12>
+[lwm2m_handle_packet:485] Entering
+[lwm2m_handle_packet:492] Parsed: ver 1, type 0, tkl 4, code 0.02, mid 38577, Content type: 40
+[lwm2m_handle_packet:494] Payload: </>;rt="oma.lwm2m";ct=110,</1>;ver=1.1,</1/0>,</2/0>,</3/0>,</4/0>,</5/0>,</6/0>,</7/0>,</31024>;ver=1.0,</31024/10>,</31024/11>,</31024/12>
+[handle_request:147] Entering
+[uri_decode:103] altPath: ""
+[registration_handleRequest:1773] /
+
+New client #0 registered.
+Client #0:
+	name: "testlwm2mclient"
+	version: "1.1"
+	binding: "UDP"
+	lifetime: 300 sec
+	objects: /1 (1.1), /1/0, /2/0, /3/0, /4/0, /5/0, /6/0, /7/0, /31024 (1.0), /31024/10, /31024/11, /31024/12, 
+
+> [message_send:870] Entering
+[message_send:872] Size to allocate: 21
+[message_send:879] coap_serialize_message() returned 13
+Sending 13 bytes to [::1]:56830
+64 41 96 B1  B1 96 D4 FD  82 72 64 01  30  dA.......rd.0
+[lwm2m_step:381] timeoutP: 60
+[registration_step:2129] Entering
+[transaction_step:460] Entering
+[lwm2m_step:488] Final timeoutP: 60
+13 bytes received from [::1]:56830
+44 04 96 B2  B2 96 EC FD  B2 72 64 01  30  D........rd.0
+[lwm2m_handle_packet:485] Entering
+[lwm2m_handle_packet:492] Parsed: ver 1, type 0, tkl 4, code 0.04, mid 38578, Content type: 0
+[lwm2m_handle_packet:494] Payload: 
+[handle_request:147] Entering
+[uri_decode:103] altPath: ""
+[registration_handleRequest:1773] /0
+
+Client #0 unregistered.
+
+> [registration_freeClient:1722] Entering
+[message_send:870] Entering
+[message_send:872] Size to allocate: 8
+[message_send:879] coap_serialize_message() returned 8
+Sending 8 bytes to [::1]:56830
+64 42 96 B2  B2 96 EC FD   dB......
+[lwm2m_step:381] timeoutP: 60
+[registration_step:2129] Entering
+[transaction_step:460] Entering
+[lwm2m_step:488] Final timeoutP: 60
+q
+
+
+jgk@E0004941:~/Desktop/wakaama/build-wakaama/examples/server$ 
+
