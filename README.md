@@ -432,3 +432,4 @@ q
 jgk@E0004941:~/Desktop/wakaama/build-wakaama/examples/server$ 
 
 https://github.com/CanvasDM/lwm2m_firmware_update_module
+https://github.com/LairdCP/lwm2m_python_client
