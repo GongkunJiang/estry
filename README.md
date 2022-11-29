@@ -434,3 +434,6 @@ jgk@E0004941:~/Desktop/wakaama/build-wakaama/examples/server$
 https://github.com/CanvasDM/lwm2m_firmware_update_module
 https://github.com/LairdCP/lwm2m_python_client
 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/python/2022.19.13321005/vspackage
+
+repo init -u ssh://liushiwei@gerrit.eswincomputing.com:29418/platform/manifest -b zhimo-tee --repo-url=ssh://liushiwei@gerrit.eswincomputing.com:29418/tools/git-repo
+repo sync -cdj4 --no-tags
