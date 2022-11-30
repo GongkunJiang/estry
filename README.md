@@ -437,3 +437,6 @@ https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/v
 
 repo init -u ssh://liushiwei@gerrit.eswincomputing.com:29418/platform/manifest -b zhimo-tee --repo-url=ssh://liushiwei@gerrit.eswincomputing.com:29418/tools/git-repo
 repo sync -cdj4 --no-tags
+
+wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.15.2/zephyr-sdk-0.15.2_linux-x86_64.tar.gz
+wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.15.2/sha256.sum | shasum --check --ignore-missing
