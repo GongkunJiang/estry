@@ -6,3 +6,23 @@ sudo apt install --no-install-recommends git cmake ninja-build gperf \
 git clone https://github.com/zephyrproject-rtos/net-tools
 cd net-tools
 make
+
+Setup DTLS security in Leshan Demo Server:
+
+Open up the Leshan Demo Server web UI
+
+Click on “Security”
+
+Click on “Add new client security configuration”
+
+Enter the following data:
+
+Client endpoint: qemu_x86
+
+Security mode: Pre-Shared Key
+
+Identity: Client_identity
+
+Key: 000102030405060708090a0b0c0d0e0f
+
+Start the Zephyr sample
