@@ -1,28 +1,6 @@
-sudo apt install --no-install-recommends git cmake ninja-build gperf \
-  ccache dfu-util device-tree-compiler wget \
-  python3-dev python3-pip python3-setuptools python3-tk python3-wheel xz-utils file \
-  make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1
-
-git clone https://github.com/zephyrproject-rtos/net-tools
-cd net-tools
-make
-
-Setup DTLS security in Leshan Demo Server:
-
-Open up the Leshan Demo Server web UI
-
-Click on “Security”
-
-Click on “Add new client security configuration”
-
-Enter the following data:
-
-Client endpoint: qemu_x86
-
-Security mode: Pre-Shared Key
-
-Identity: Client_identity
-
-Key: 000102030405060708090a0b0c0d0e0f
-
-Start the Zephyr sample
+If writing the firmware package to Package Resource has completed, or, if the device has downloaded the firmware package from the Package URI the state changes to Downloaded.
+Writing an empty string to Package URI Resource or setting the Package Resource to NULL (‘\0’), resets the Firmware Update State Machine: the State Resource value is set to Idle and the Update Result Resource value is set to 0.
+When in Downloaded state, and the executable Resource Update is triggered, the state changes to Updating.
+If the Update Resource failed, the state returns at Downloaded.
+If performing the Update Resource was successful, the state changes from Updating to Idle. 
+The firmware update state machine is illustrated in Figure 29 of the LwM2M version 1.0 specification (and also in Figure E.6.1-1 of this specification). 
