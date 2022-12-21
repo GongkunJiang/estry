@@ -6,3 +6,5 @@ If performing the Update Resource was successful, the state changes from Updatin
 The firmware update state machine is illustrated in Figure 29 of the LwM2M version 1.0 specification (and also in Figure E.6.1-1 of this specification). 
 
 http://confluence.eswincomputing.com/pages/viewpage.action?pageId=57706561
+
+git clone ssh://zhusonghe@gerrit.eswincomputing.com:29418/eswin/toolchain/daily -b e510-gcc
