@@ -8,3 +8,6 @@ The firmware update state machine is illustrated in Figure 29 of the LwM2M versi
 http://confluence.eswincomputing.com/pages/viewpage.action?pageId=57706561
 
 git clone ssh://zhusonghe@gerrit.eswincomputing.com:29418/eswin/toolchain/daily -b e510-gcc
+
+apt-get install libpython2.7
+sudo apt-get install libatlas3-base
