@@ -13,3 +13,13 @@ apt-get install libpython2.7
 sudo apt-get install libatlas3-base
 
 https://launchpadlibrarian.net/590354609/indicator-stickynotes-1.0.1.tar.gz
+
+下载：https://github.com/umangv/indicator-stickynotes
+
+PPA源安装：
+
+sudo add-apt-repository ppa:umang/indicator-stickynotes
+
+sudo apt update
+
+sudo apt install indicator-stickynotes -y
