@@ -11,3 +11,5 @@ git clone ssh://zhusonghe@gerrit.eswincomputing.com:29418/eswin/toolchain/daily 
 
 apt-get install libpython2.7
 sudo apt-get install libatlas3-base
+
+https://launchpadlibrarian.net/590354609/indicator-stickynotes-1.0.1.tar.gz
