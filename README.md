@@ -23,3 +23,45 @@ sudo add-apt-repository ppa:umang/indicator-stickynotes
 sudo apt update
 
 sudo apt install indicator-stickynotes -y
+
+jgk@E0004941:~/Desktop/FS0111/fota_saas/9500/test/package_restore$ md5sum output/*
+diff
+d028011e980db34c9a65cbf96c774734  output/kernel.bin
+c476e7d49635d5ad5b332ce17bc8e2e7  output/uboot.bin
+full
+d028011e980db34c9a65cbf96c774734  output/kernel.bin
+c476e7d49635d5ad5b332ce17bc8e2e7  output/uboot.bin
+
+
+jgk@E0004941:~/Desktop/FS0111/fota_saas/9500/test/package_restore$ md5sum /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/*/*/*
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/1.0.1/A/ecm9500_0x7000_kernel_18.1.8.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.0.1/AC/ecm9500_kernel_0x7000_18.1.8.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.1.0/CA/ecm9500_kernel_0x7000_18.1.8.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.1.1.0/B/ecm9500_kernel_0x7000_18.1.8.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.1.1/C/ecm9500_cpu_a_0x7000_18.1.8.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.1/A/ecm9500_kernel_0x7000_18.1.8.bin
+d028011e980db34c9a65cbf96c774734  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.1/A/ecm9500_kernel_0x7000_1.56.1.bin
+d028011e980db34c9a65cbf96c774734  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.1/B/ecm9500_kernel_0x7000_1.56.1.bin
+c476e7d49635d5ad5b332ce17bc8e2e7  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.1/B/ecm9500_uboot_0x1000_1.1.7.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.3/A/ecm9500_kernel_0x7000_18.1.8.bin
+23bd26658787f7f4326aee45644fc645  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.3/A/ecm9500_uboot_0x1000_1.21.1.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.3/B/ecm9500_kernel_0x7000_18.1.8.bin
+23bd26658787f7f4326aee45644fc645  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.3/B/ecm9500_uboot_0x1000_1.21.1.bin
+
+d028011e980db34c9a65cbf96c774734  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.4/A/ecm9500_kernel_0x7000_1.56.1.bin
+c476e7d49635d5ad5b332ce17bc8e2e7  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.4/A/ecm9500_uboot_0x1000_1.1.7.bin
+
+d028011e980db34c9a65cbf96c774734  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.4/B/ecm9500_kernel_0x7000_1.56.1.bin
+c476e7d49635d5ad5b332ce17bc8e2e7  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.4/B/ecm9500_uboot_0x1000_1.1.7.bin
+23bd26658787f7f4326aee45644fc645  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.5/B/ecm9500_uboot_0x1000_1.21.1.bin
+d028011e980db34c9a65cbf96c774734  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.6/B/ecm9500_kernel_0x7000_1.56.1.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.7/C/ecm9500_kernel_0x7000_18.1.8.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2.8/A/ecm9500_0x7000_kernel_18.1.8.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/12.2/A/ecm9500_kernel_0x7000_18.1.8.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/1.2.3/A/ecm9500_kernel_0x7000_18.1.8.bin
+23bd26658787f7f4326aee45644fc645  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/1.2.3/A/ecm9500_uboot_0x1000_1.21.1.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/1.a.1/A/ecm9500_kernel_0x7000_18.1.8.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/2.1.1/A/ecm9500_uboot_0x1000_18.1.8.bin
+c476e7d49635d5ad5b332ce17bc8e2e7  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/2.1.2/A/ecm9500_uboot_0x1000_1.1.7.bin
+bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/2.1.3/A/ecm9500_uboot_0x1000_18.1.8.bin
+jgk@E0004941:~/Desktop/FS0111/fota_saas/9500/test/package_restore$ 
