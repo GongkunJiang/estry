@@ -65,3 +65,12 @@ bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/p
 c476e7d49635d5ad5b332ce17bc8e2e7  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/2.1.2/A/ecm9500_uboot_0x1000_1.1.7.bin
 bbbcdc41fd892bdbf4af3ef315dd3383  /home/jgk/Desktop/FS0111/fota_saas/9500/test/package_make/test_data/2.1.3/A/ecm9500_uboot_0x1000_18.1.8.bin
 jgk@E0004941:~/Desktop/FS0111/fota_saas/9500/test/package_restore$ 
+
+fota_sign
+	在src目录下执行make
+local_upgrade
+	在win10使用Qt Creator工具打开，直接编译运行
+fota_agent
+	在build目录下依次执行
+	cmake ../client
+	make
