@@ -74,3 +74,9 @@ fota_agent
 	在build目录下依次执行
 	cmake ../client
 	make
+
+fota_sign
+	在src目录下执行make, 会在当前目录生成signing.o和signing.a，其中signing.a是目标文件。
+local_upgrade
+	在win10使用Qt Creator工具（WIN10, Qt 5.9.1, Qt Creator 4.3.1, MinGW 5.3.0 32bit）打开，直接编译运行，会编译生成并打开本地升级工具；
+	PS：如果按照build.bat的规定安装了开发工具，可直接双击build.bat打开本地升级工具。
