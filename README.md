@@ -80,3 +80,8 @@ fota_sign
 local_upgrade
 	在win10使用Qt Creator工具（WIN10, Qt 5.9.1, Qt Creator 4.3.1, MinGW 5.3.0 32bit）打开，直接编译运行，会编译生成并打开本地升级工具；
 	PS：如果按照build.bat的规定安装了开发工具，可直接双击build.bat打开本地升级工具。
+
+$ sudo apt update
+$ sudo apt install gawk wget git diffstat unzip \
+ texinfo gcc-multilib build-essential chrpath socat \
+ libsdl1.2-dev xterm ncurses-dev lzop libelf-dev make
