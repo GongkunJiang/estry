@@ -11,3 +11,5 @@ lwm2m_step
 				lwm2m_buffer_send
 					connection_send
 						send_data
+
+for (objectP = contextP->objectList; objectP != NULL; objectP = objectP->next)
