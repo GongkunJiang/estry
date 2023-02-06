@@ -14,3 +14,13 @@ lwm2m_step
 
 for (objectP = contextP->objectList; objectP != NULL; objectP = objectP->next)
 Client_identity:000102030405060708090a0b0c0d0e0f
+
+Setup DTLS security in Leshan Demo Server:
+Open up the Leshan Demo Server web UI
+Click on “Security”
+Click on “Add new client security configuration”
+Enter the following data:
+Client endpoint: qemu_x86
+Security mode: Pre-Shared Key
+Identity: Client_identity
+Key: 000102030405060708090a0b0c0d0e0f
