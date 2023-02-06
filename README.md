@@ -13,3 +13,4 @@ lwm2m_step
 						send_data
 
 for (objectP = contextP->objectList; objectP != NULL; objectP = objectP->next)
+Client_identity:000102030405060708090a0b0c0d0e0f
