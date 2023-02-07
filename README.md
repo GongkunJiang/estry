@@ -24,3 +24,5 @@ Client endpoint: qemu_x86
 Security mode: Pre-Shared Key
 Identity: Client_identity
 Key: 000102030405060708090a0b0c0d0e0f
+
+https://github.com/eclipse/leshan/wiki/Credential-files-format
