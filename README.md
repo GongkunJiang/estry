@@ -26,3 +26,4 @@ Identity: Client_identity
 Key: 000102030405060708090a0b0c0d0e0f
 
 https://github.com/eclipse/leshan/wiki/Credential-files-format
+https://marketplace.visualstudio.com/_apis/public/gallery/publishers/josetr/vsextensions/cmake-language-support-vscode/0.0.9/vspackage
