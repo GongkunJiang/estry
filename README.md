@@ -27,3 +27,5 @@ Key: 000102030405060708090a0b0c0d0e0f
 
 https://github.com/eclipse/leshan/wiki/Credential-files-format
 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/josetr/vsextensions/cmake-language-support-vscode/0.0.9/vspackage
+
+https://download.visualstudio.microsoft.com/download/pr/c7f21771-9b09-4c81-883b-90dff8760c1e/fe992d38a94cc6f301c0236db3920c0a/dotnet-sdk-6.0.405-linux-x64.tar.gz
