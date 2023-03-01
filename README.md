@@ -1,3 +1,4 @@
+git clone https://github.com/seL4/seL4-CAmkES-L4v-dockerfiles.git
 Get Camkes
 Make sure that you already have the tools to build seL4 and Camkes.
 Download Camkes:
