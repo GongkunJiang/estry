@@ -1,3 +1,5 @@
+https://www.cl.cam.ac.uk/research/hvg/Isabelle/dist/Isabelle2022_linux.tar.gz
+
 sudo apt-get install \
     python3 python3-pip python3-dev \
     gcc-arm-none-eabi build-essential libxml2-utils ccache \
