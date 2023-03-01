@@ -38,3 +38,20 @@ Isabelle2022/Isabelle2022
 Other Isabelle command-line tools can be invoked from the terminal like this:
 
 Isabelle2022/bin/isabelle
+
+Linux
+Requirements
+Isabelle2022_linux.tar.gz
+Proper Window manager / Desktop environment that works with Java/AWT/Swing
+TeXLive for Isabelle/LaTeX document preparation
+Installation
+The bundled archive contains everything required for Isabelle on Linux. It can be unpacked into an arbitrary directory like this:
+
+tar -xzf Isabelle2022_linux.tar.gz
+The Isabelle/jEdit Prover IDE can be invoked like this:
+
+Isabelle2022/Isabelle2022
+Other Isabelle command-line tools can be invoked from the terminal like this:
+
+Isabelle2022/bin/isabelle
+Windows (10, 11)
