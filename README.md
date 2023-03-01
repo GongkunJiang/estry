@@ -1,3 +1,20 @@
+Get Camkes
+Make sure that you already have the tools to build seL4 and Camkes.
+Download Camkes:
+mkdir camkes-project
+cd camkes-project
+repo init -u https://github.com/seL4/camkes-manifest.git
+repo sync
+Build and run simple application
+The following will configure, build, and run a simple example CAmkES system:
+
+cd camkes-project
+mkdir build
+cd build
+../init-build.sh -DPLATFORM=sabre -DAARCH32=1 -DCAMKES_APP=adder -DSIMULATION=1
+ninja
+./simulate
+
 Configuring and building an seL4 project
 This page contains documentation for how to interact with and build a project that is using this build system. For new project development, see incorporating the build system.
 
