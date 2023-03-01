@@ -1,3 +1,211 @@
+sudo apt-get install cmake ccache ninja-build cmake-curses-gui
+sudo apt-get install libxml2-utils ncurses-dev
+sudo apt-get install curl git doxygen device-tree-compiler
+sudo apt-get install u-boot-tools
+
+sudo apt-get install python3-dev python3-pip python-is-python3
+sudo apt-get install protobuf-compiler python3-protobuf
+
+Simulating with QEMU
+
+In order to run seL4 projects on a simulator you will need QEMU:
+
+sudo apt-get install qemu-system-arm qemu-system-x86 qemu-system-misc
+Cross-compiling for ARM targets
+
+To build for ARM targets you will need a cross compiler:
+
+sudo apt-get install gcc-arm-linux-gnueabi g++-arm-linux-gnueabi
+sudo apt-get install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+(you can install the hardware floating point versions as well if you wish)
+
+sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+Cross-compiling for RISC-V targets
+
+To build for RISC-V targets you will need a cross compiler:
+
+It is recommended to build the toolchain from source.
+
+ git clone https://github.com/riscv/riscv-gnu-toolchain.git
+ cd riscv-gnu-toolchain
+ git submodule update --init --recursive
+ export RISCV=/opt/riscv
+ ./configure --prefix="${RISCV}" --enable-multilib
+ make linux
+After it is built, add the $RISCV/bin folder to your PATH. The built toolchain works for both 32-bit and 64-bit.
+
+Alternatively, any pre-built toolchain with multilib enabled should work.
+
+Builidng the seL4 manual
+
+If you would like to build the seL4 manual, you will need the following LaTeX pacakges:
+
+sudo apt-get install texlive texlive-latex-extra texlive-fonts-extra
+Debian
+For Debian Stretch or later
+The dependencies listed in our docker files repository will work for a Debian installation. You can refer to this repository for an up-to-date list of base build dependencies. Specifically refer to the dependencies listed in the:
+
+Base Tools Dockerfile
+seL4 Dockerfile
+LaTeX
+The version of cmake in Debian stretch is too old to build seL4 projects (buster and later are OK). If you are on stretch, install cmake from stretch-backports:
+
+Add the stretch-backports repository like this (substitute a local mirror for ftp.debian.org if you like)
+
+sudo sh -c "echo 'deb http://ftp.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list"
+Then install cmake with
+
+sudo apt-get update
+sudo apt-get -t stretch-backports install cmake
+Python Dependencies
+Regardless of your Linux distribution, python dependencies are required to build seL4, the manual and its proofs. To install you can run:
+
+pip3 install --user setuptools
+pip3 install --user sel4-deps
+# Currently we duplicate dependencies for python2 and python3 as a python3 upgrade is in process
+pip install --user setuptools
+pip install --user sel4-deps
+(Some distributions use pip for python3 and pip2 for python2; others uses pip for python2 and pip3 for python3. Use the Python 3 version for your distribution)
+
+CAmkES Build Dependencies
+To build a CAmkES based project on seL4, additional dependencies need to be installed on your host machine. Projects using CAmkES (the seL4 component system) need Haskell and some extra Python libraries in addition to the standard build tools. The following instructions cover the CAmkES build dependencies for Ubuntu/Debian. Please ensure you have installed the dependencies listed in sections seL4 Build Dependencies and Get Google’s Repo tool prior to building a CAmkES project.
+
+Python Dependencies
+The Python dependencies required by the CAmkES build toolchain can be installed via pip:
+
+pip3 install --user camkes-deps
+# Currently we duplicate dependencies for python2 and python3 as a python3 upgrade is in process
+pip install --user camkes-deps
+Haskell Dependencies
+The CAmkES build toolchain additionally requires Haskell. You can install the Haskell stack on your distribution by running:
+
+curl -sSL https://get.haskellstack.org/ | sh
+If you prefer not to bypass your distribution’s package manager, you can do
+
+sudo apt-get install haskell-stack
+Build Dependencies
+Ubuntu
+These instructions are intended for Ubuntu LTS versions 18.04, 20.04, and 22.04.
+
+Install the following packages:
+
+sudo apt-get install clang gdb
+sudo apt-get install libssl-dev libclang-dev libcunit1-dev libsqlite3-dev
+sudo apt-get install qemu-kvm
+Debian
+For Debian Stretch or later
+The dependencies listed in our docker files repository will work for a Debian installation. You can refer to this repository for an up-to-date list of base build dependencies. Specifically refer to the dependencies listed in the:
+
+CAmkES Dockerfile
+Proof and Isabelle Dependencies
+Proof Dependencies
+Linux Packages - Debian
+On Buster or Bullseye, to run all proofs against the ARMv7-A architecture you will need to install the following packages:
+
+sudo apt-get install \
+    python3 python3-pip python3-dev \
+    gcc-arm-none-eabi build-essential libxml2-utils ccache \
+    ncurses-dev librsvg2-bin device-tree-compiler cmake \
+    ninja-build curl zlib1g-dev texlive-fonts-recommended \
+    texlive-latex-extra texlive-metapost texlive-bibtex-extra \
+    rsync
+There is no package for the MLton compiler on Buster or Bullseye, so you will need to install it from the MLton website.
+
+The Haskell Stack package is unavailable on Bullseye and out-of-date on Buster, so you will need to install it from the Haskell Stack website.
+
+Linux Packages - Ubuntu
+These instructions are intended for Ubuntu LTS versions 18.04, 20.04, and 22.04.
+
+To run all proofs against the ARMv7-A architecture you will need to install the following packages:
+
+sudo apt-get install \
+    python3 python3-pip python3-dev \
+    gcc-arm-none-eabi build-essential libxml2-utils ccache \
+    ncurses-dev librsvg2-bin device-tree-compiler cmake \
+    ninja-build curl zlib1g-dev texlive-fonts-recommended \
+    texlive-latex-extra texlive-metapost texlive-bibtex-extra \
+    mlton-compiler haskell-stack
+macOS packages
+These instructions use Homebrew, which can be installed from their website. The main packages that are needed are:
+
+brew install git libxml2 ncurses librsvg dtc cmake ninja texlive rysnc python ccache \
+    zstd haskell-stack
+The installation of mlton on Apple silicon is currently not well supported. One approach would be to cross-compile mlton on another architecture and transfer it. On Intel machines, the following works:
+
+brew install mlton
+To install the cross-compilers, run
+
+brew install --cask gcc-arm-embedded
+
+brew install arm-none-eabi-gcc
+
+brew tap messense/macos-cross-toolchains
+brew install x86_64-unknown-linux-gnu aarch64-unknown-linux-gnu
+
+brew tap riscv/riscv
+brew install riscv-tools
+Note that CMake will require the x86 compiler before it can be invoked.
+
+The instructions in the sections below should apply for both Linux and macOS.
+
+Python
+The build system for the seL4 kernel requires several python packages:
+
+pip3 install --user --upgrade pip
+pip3 install --user sel4-deps
+Haskell Stack
+After installing haskell-stack, make sure you’ve adjusted your PATH to include $HOME/.local/bin, and that you’re running an up-to-date version:
+
+stack upgrade --binary-only
+which stack # should be $HOME/.local/bin/stack
+Isabelle Setup
+After the repository is set up using repo with seL4/verification-manifest, you should have following directory structure, where l4v is the repository you are currently looking at:
+
+verification/
+    HOL4/
+    graph-refine/
+    isabelle/
+    l4v/
+    seL4/
+To set up Isabelle for use in l4v/, assuming you have no previous installation of Isabelle, run the following commands in the directory verification/l4v/:
+
+mkdir -p ~/.isabelle/etc
+cp -i misc/etc/settings ~/.isabelle/etc/settings
+./isabelle/bin/isabelle components -a
+./isabelle/bin/isabelle jedit -bf
+./isabelle/bin/isabelle build -bv HOL
+These commands perform the following steps:
+
+create an Isabelle user settings directory.
+install L4.verified Isabelle settings. These settings initialise the Isabelle installation to use the standard Isabelle contrib tools from the Munich Isabelle repository and set up paths such that multiple Isabelle repository installations can be used side by side without interfering with each other.
+download contrib components from the Isabelle repository. This includes Scala, a Java JDK, PolyML, and multiple external provers. You should download these, even if you have these tools previously installed elsewhere to make sure you have the right versions. Depending on your internet connection, this may take some time.
+compile and build the Isabelle PIDE jEdit interface.
+build basic Isabelle images to ensure that the installation works. This may take a few minutes.
+Alternatively, it is possible to use the official Isabelle2021 release bundle for your platform from the Isabelle website. In this case, the installation steps above can be skipped, and you would replace the directory verification/isabelle/ with a symbolic link to the Isabelle home directory of the release version. Note that this is not recommended for development, since Google repo will overwrite this link when you synchronise repositories and Isabelle upgrades will have to be performed manually as development progresses.
+
+PIDE Tools
+The following tools and tips can make writing proofs easier and more efficient when using the Isabelle PIDE jEdit interface.
+
+WhiteSpace plugin
+The WhiteSpace plugin can highlight normally invisible whitespace characters such as tabs and spaces, and can remove trailing whitespace on save. To install and configure the WhiteSpace plug-in for jEdit, follow the instructions below.
+
+Go to Plugins -> Plugin manager -> Install.
+Search for WhiteSpace and install the plugin.
+Go to Plugins -> Plugin Options -> WhiteSpace -> On save actions.
+Check “Remove trailing whitespace” and click Apply.
+Key bindings for Navigator
+The Isabelle PIDE provides “Back” and “Forward” actions that allow you to easily navigate to previous positions in your edit history. Follow the steps below to bind a key to the “Back” function. We recommend [ctrl]+[`].
+
+Go to Utilities -> Global Options -> jEdit -> Shortcuts.
+Select Action Set -> Plugin: Navigator.
+Set a shortcut for Back.
+Go-to-error macro
+Run the following commands in the directory verification/l4v/:
+
+mkdir -p ~/.isabelle/jedit/macros
+cp misc/jedit/macros/goto-error.bsh ~/.isabelle/jedit/macros/.
+You can add keybindings for this macro in the usual way, by going to Utilities -> Global Options -> jEdit -> Shortcuts.
+
 git clone https://github.com/seL4/seL4-CAmkES-L4v-dockerfiles.git
 Get Camkes
 Make sure that you already have the tools to build seL4 and Camkes.
