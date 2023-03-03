@@ -1,3 +1,29 @@
+I had to do it on Linux Mint as I could not find a solution for windows. The modified answer is below.
+
+# Install compiler and tools
+$ sudo apt-get install build-essential libtool python-dev
+
+# Install cmake
+$ sudo apt-get install cmake
+
+$ wget https://github.com/libarchive/libarchive/releases/download/v3.4.1/libarchive-3.4.1.tar.xz
+$ tar -xJf libarchive-3.4.1.tar.xz
+
+# Configure using cmake...
+$ mkdir build
+$ cd build
+$ cmake -DCMAKE_INSTALL_PREFIX=/usr/local ../libarchive-3.4.1
+
+# Now compile and install...
+$ make
+$ sudo make install
+
+$ sudo sh -c 'echo /usr/local/lib > /etc/ld.so.conf.d/libarchive3.conf'
+$ sudo ldconfig
+
+$pip install python-libarchive
+
+
 https://docs.sel4.systems/projects/sel4-tutorials/debugging-guide
 Simulating with QEMU
 
