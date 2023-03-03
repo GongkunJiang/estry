@@ -1,3 +1,4 @@
+https://docs.sel4.systems/projects/sel4-tutorials/debugging-guide
 Simulating with QEMU
 
 In order to run seL4 projects on a simulator you will need QEMU:
