@@ -1,3 +1,17 @@
+uint64_t translate(pte_t* page_table, uint64_t va) {
+    uint64_t vpn[3];
+    vpn[0] = (va >> 30) & 0x1    vpn[1] = (va >> 21) & 0x1ff;
+    vpn[2] = (va >> 12) & 0x1ff;
+    pte_t* pte = page_table;
+    for (int i = 0; i < 3; i++) {
+        uint64_t idx = vpn[i];
+        if (!(pte[idx] & PTE_V)) {
+            return 0;
+        }
+        pte = (pte_t*) (pte[idx] & ~0xfff);
+    }
+    return pte[va >> PAGE_SHIFT] & ~0xfff;
+}
 GSSXZEZ56G-eyJsaWNlbnNlSWQiOiJHU1NYWkVaNTZHIiwibGljZW5zZWVOYW1lIjoic2lnbnVwIHNjb290ZXIiLCJhc3NpZ25lZU5hbWUiOiIiLCJhc3NpZ25lZUVtYWlsIjoiIiwibGljZW5zZVJlc3RyaWN0aW9uIjoiIiwiY2hlY2tDb25jdXJyZW50VXNlIjpmYWxzZSwicHJvZHVjdHMiOlt7ImNvZGUiOiJQU0kiLCJmYWxsYmFja0RhdGUiOiIyMDI1LTA4LTAxIiwicGFpZFVwVG8iOiIyMDI1LTA4LTAxIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBTVyIsImZhbGxiYWNrRGF0ZSI6IjIwMjUtMDgtMDEiLCJwYWlkVXBUb
 https://download-cdn.jetbrains.com/cpp/CLion-2022.3.3.tar.gz
 Spike
