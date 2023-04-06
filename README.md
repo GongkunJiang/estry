@@ -1,3 +1,4 @@
+https://github.com/seL4/l4v/blob/master/docs/setup.md
 # 拉取a710项目并打开
 mkdir a710
 cd a710
