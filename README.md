@@ -1,3 +1,15 @@
+Submodule 'binutils' (https://sourceware.org/git/binutils-gdb.git) registered for path 'binutils'
+Submodule 'dejagnu' (https://git.savannah.gnu.org/git/dejagnu.git) registered for path 'dejagnu'
+Submodule 'gcc' (https://gcc.gnu.org/git/gcc.git) registered for path 'gcc'
+Submodule 'gdb' (https://sourceware.org/git/binutils-gdb.git) registered for path 'gdb'
+Submodule 'glibc' (https://sourceware.org/git/glibc.git) registered for path 'glibc'
+Submodule 'musl' (https://git.musl-libc.org/git/musl) registered for path 'musl'
+Submodule 'newlib' (https://sourceware.org/git/newlib-cygwin.git) registered for path 'newlib'
+Submodule 'pk' (https://github.com/riscv-software-src/riscv-pk.git) registered for path 'pk'
+Submodule 'qemu' (https://gitlab.com/qemu-project/qemu.git) registered for path 'qemu'
+Submodule 'spike' (https://github.com/riscv-software-src/riscv-isa-sim.git) registered for path 'spike'
+
+
 https://isabelle.sketis.net/components/gnu-utils-20211030.tar.gz
 https://github.com/seL4/l4v/blob/master/docs/setup.md
 # 拉取a710项目并打开
