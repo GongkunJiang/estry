@@ -1,3 +1,38 @@
+ => ERROR [2/2] RUN apt-get update -q     && apt-get install -y --no-install-recommends         cowsay         sudo                                 61.1s
+------                                                                                                                                                    
+ > [2/2] RUN apt-get update -q     && apt-get install -y --no-install-recommends         cowsay         sudo:                                             
+#0 30.80 Err:1 http://deb.debian.org/debian bullseye InRelease                                                                                            
+#0 30.80   Could not connect to debian.map.fastlydns.net:80 (146.75.114.132), connection timed out Unable to connect to deb.debian.org:http:              
+#0 30.80 Err:2 http://deb.debian.org/debian bullseye-updates InRelease                                                                                    
+#0 30.80   Unable to connect to deb.debian.org:http:                                                                                                      
+#0 31.05 Get:3 http://security.debian.org/debian-security bullseye-security InRelease [48.4 kB]
+#0 61.08 Err:3 http://security.debian.org/debian-security bullseye-security InRelease
+#0 61.08   Connection timed out [IP: 151.101.194.132 80]
+#0 61.09 Reading package lists...
+#0 61.10 W: Failed to fetch http://deb.debian.org/debian/dists/bullseye/InRelease  Could not connect to debian.map.fastlydns.net:80 (146.75.114.132), connection timed out Unable to connect to deb.debian.org:http:
+#0 61.10 W: Failed to fetch http://security.debian.org/debian-security/dists/bullseye-security/InRelease  Connection timed out [IP: 151.101.194.132 80]
+#0 61.10 W: Failed to fetch http://deb.debian.org/debian/dists/bullseye-updates/InRelease  Unable to connect to deb.debian.org:http:
+#0 61.10 W: Some index files failed to download. They have been ignored, or old ones used instead.
+#0 61.10 Reading package lists...
+#0 61.11 Building dependency tree...
+#0 61.11 Reading state information...
+#0 61.11 E: Unable to locate package cowsay
+#0 61.11 E: Unable to locate package sudo
+------
+extras.Dockerfile:19
+--------------------
+  18 |     # hadolint ignore=DL3008,DL3009
+  19 | >>> RUN apt-get update -q \
+  20 | >>>     && apt-get install -y --no-install-recommends \
+  21 | >>>         # Add more dependencies here
+  22 | >>>         cowsay \
+  23 | >>>         sudo
+  24 |     
+--------------------
+ERROR: failed to solve: process "/bin/sh -c apt-get update -q     && apt-get install -y --no-install-recommends         cowsay         sudo" did not complete successfully: exit code: 100
+make: *** [Makefile:174: build_user] Error 1
+
+
 jgk@E0004941:/data/a710/build$ file sel4test_build/elfloader/elfloader 
 sel4test_build/elfloader/elfloader: ELF 64-bit LSB executable, UCB RISC-V, RVC, soft-float ABI, version 1 (SYSV), statically linked, with debug_info, not stripped
 Submodule 'dejagnu' (https://git.savannah.gnu.org/git/dejagnu.git) registered for path 'dejagnu'
