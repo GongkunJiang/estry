@@ -1,3 +1,5 @@
+${PATH_TO_OPEN_SBI}/build/platform/rv32imac/flash_boot_gen -f ${INPUT_FILE} -s 0x80000000 -o ${OUTPUT_FILE} -T ${PATH_TO_OPEN_SBI}/build/platform/link.ld -L${PATH_TO_OPEN_SBI}/build/platform/lib -lsbi
+
 ${PATH_TO_OPEN_SBI}/build/platform/lib/libsbi.a -Ttext=0x80000000 -o ${OUTPUT_FILE}
 qemu-system-riscv64 -machine virt -bios ${PATH_TO_OPEN_SBI}/build/platform/fw_jump.elf -kernel ${PATH_TO_BINARY_FILE} -append "console=ttyS0" -nographic
 make PLATFORM=<platform> CROSS_COMPILE=<cross-compiler-prefix> FW_PAYLOAD_PATH=<payload-file> LIBS_ONLY=y
