@@ -1,5 +1,5 @@
 ${PATH_TO_OPEN_SBI}/build/platform/lib/libsbi.a -Ttext=0x80000000 -o ${OUTPUT_FILE}
-
+qemu-system-riscv64 -machine virt -bios ${PATH_TO_OPEN_SBI}/build/platform/fw_jump.elf -kernel ${PATH_TO_BINARY_FILE} -append "console=ttyS0" -nographic
 make PLATFORM=<platform> CROSS_COMPILE=<cross-compiler-prefix> FW_PAYLOAD_PATH=<payload-file> LIBS_ONLY=y
 
 => ERROR [2/2] RUN apt-get update -q     && apt-get install -y --no-install-recommends         cowsay         sudo                                 61.1s
