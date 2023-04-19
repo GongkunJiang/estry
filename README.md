@@ -1,4 +1,6 @@
- => ERROR [2/2] RUN apt-get update -q     && apt-get install -y --no-install-recommends         cowsay         sudo                                 61.1s
+make PLATFORM=<platform> CROSS_COMPILE=<cross-compiler-prefix> FW_PAYLOAD_PATH=<payload-file> LIBS_ONLY=y
+
+=> ERROR [2/2] RUN apt-get update -q     && apt-get install -y --no-install-recommends         cowsay         sudo                                 61.1s
 ------                                                                                                                                                    
  > [2/2] RUN apt-get update -q     && apt-get install -y --no-install-recommends         cowsay         sudo:                                             
 #0 30.80 Err:1 http://deb.debian.org/debian bullseye InRelease                                                                                            
