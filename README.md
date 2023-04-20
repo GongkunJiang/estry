@@ -1,3 +1,5 @@
+https://marketplace.visualstudio.com/_apis/public/gallery/publishers/CL/vsextensions/eide/3.12.0/vspackage
+https://marketplace.visualstudio.com/_apis/public/gallery/publishers/platformio/vsextensions/platformio-ide/3.1.1/vspackage?targetPlatform=linux-x64
 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/zhwu95/vsextensions/riscv/0.0.8/vspackage
 
 ./key_app mode=private filename=/home/jgk/Desktop/FS0117/fota_saas/9500/fota_agent/sample/cprik.der
