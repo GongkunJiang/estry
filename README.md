@@ -1,3 +1,5 @@
+https://marketplace.visualstudio.com/_apis/public/gallery/publishers/zhwu95/vsextensions/riscv/0.0.8/vspackage
+
 ./key_app mode=private filename=/home/jgk/Desktop/FS0117/fota_saas/9500/fota_agent/sample/cprik.der
 Q(X): 474109989604E08CB026F649DCE17947244DC3F2E65D3BEA91EC7784588F9D18
 Q(Y): 0F957D5A8E267541F32D7CF34684D15AB1564555EF389C411A3616D1333E4D97
