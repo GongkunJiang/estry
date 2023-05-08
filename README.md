@@ -1,3 +1,14 @@
+commit a78290755fb0467820b83512671536b6c4ddbd4e (HEAD -> master, tag: snapshots/2022-08-03, origin/master, origin/HEAD)
+Author: Marc Lasch <marc.lasch@husqvarnagroup.com>
+Date:   Sun Jul 3 12:22:04 2022 +0200
+
+    [GH-667] core: Avoid value truncation on 32bit architectures
+    
+    Replace `labs()` with `llabs()` to avoid truncation on 32bit
+    architectures. Also do not tolerate value truncation in the CI build.
+
+
+
 git clone https://github.com/obgm/libcoap.git
 git clone --recurse-submodules https://github.com/eclipse/wakaama.git
 #!/bin/sh
