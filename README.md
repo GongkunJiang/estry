@@ -1,3 +1,5 @@
+git clone https://github.com/obgm/libcoap.git
+git clone --recurse-submodules https://github.com/eclipse/wakaama.git
 #!/bin/sh
 set -e
 # Docker CE for Linux installation script
