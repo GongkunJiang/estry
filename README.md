@@ -1,3 +1,8 @@
+Domain0 Region00          : 0x0000000002008000-0x000000000200bfff (I)
+Domain0 Region01          : 0x0000000002000000-0x0000000002007fff (I)
+Domain0 Region02          : 0x0000000080000000-0x000000008007ffff ()
+Domain0 Region03          : 0x0000000000000000-0xffffffffffffffff (R,W,X)
+
 init_coldboot(scratch, hartid) 在冷启动期间初始化OpenSBI
 	sbi_scratch_init(scratch)	为每个有效的harid初始化scratch指针于hartid_to_scratch_table数组，并更新last_hartid_having_scratch为最后一个有效的hartid
 	sbi_domain_init(scratch, hartid)	通过设置内存区域，引导hartid和可能分配的hart来初始化root domain
