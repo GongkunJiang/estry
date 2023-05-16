@@ -1,3 +1,8 @@
+There are two classes of clients, normal clients and supplicants. The latter is
+a helper process for the TEE to access resources in Linux, for example file
+system access. A normal client opens /dev/tee[0-9]* and a supplicant opens
+/dev/teepriv[0-9].
+
 Domain0 Region00          : 0x0000000002008000-0x000000000200bfff (I)
 Domain0 Region01          : 0x0000000002000000-0x0000000002007fff (I)
 Domain0 Region02          : 0x0000000080000000-0x000000008007ffff ()
