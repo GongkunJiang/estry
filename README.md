@@ -1,3 +1,4 @@
+$ repo init -u https: //github.com/OP-TEE/manifest.git -m default.xml
 There are two classes of clients, normal clients and supplicants. The latter is
 a helper process for the TEE to access resources in Linux, for example file
 system access. A normal client opens /dev/tee[0-9]* and a supplicant opens
