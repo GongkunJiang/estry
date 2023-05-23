@@ -1,3 +1,5 @@
+8da0eeae-f946-11ed-be56-0242ac120002
+f7cbf0e0-c772-4eaa-9d18-0b5fecfebc53
 712ae5ec-f557-11ed-a05b-0242ac120003
 $ repo init -u https: //github.com/OP-TEE/manifest.git -m default.xml
 There are two classes of clients, normal clients and supplicants. The latter is
