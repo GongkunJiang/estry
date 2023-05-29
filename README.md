@@ -1,3 +1,4 @@
+https://marketplace.visualstudio.com/_apis/public/gallery/publishers/xsro/vsextensions/masm-tasm/1.1.1/vspackage
 ssh://liushiwei@gerrit.eswincomputing.com:29418/eswin/e315s_security (push)
 
 8da0eeae-f946-11ed-be56-0242ac120002
