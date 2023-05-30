@@ -1,3 +1,14 @@
+E0004941@E0004941DT MINGW64 /c/NoteBook/OpenSources
+$ mkdir linux_book_2nd_edition
+
+E0004941@E0004941DT MINGW64 /c/NoteBook/OpenSources
+$ cd linux_book_2nd_edition/
+
+E0004941@E0004941DT MINGW64 /c/NoteBook/OpenSources/linux_book_2nd_edition
+$ repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-morty -m imx-4.9.11-1.0.0_ga.xml
+
+
+
 https://marketplace.visualstudio.com/_apis/public/gallery/publishers/xsro/vsextensions/masm-tasm/1.1.1/vspackage
 ssh://liushiwei@gerrit.eswincomputing.com:29418/eswin/e315s_security (push)
 
