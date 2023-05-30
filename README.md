@@ -1,60 +1,83 @@
-#include <linux/module.h> #include <linux/miscdevice.h> #include <linux/fs.h> static int my_dev_open(struct inode *inode, struct file "fle) 一 pr_info("my_dev_open() is called.\n"); return e; static int my_dev_close(struct inode "inode, struct file *fle) ( pr_info("my_dev_close() is called.\n"); static long my_dev_ioctl(struct file "fle, unsigned int cmd, unsigned long arg) 一 return e; pr_info("my_dev_ioctl() is called. cmd = %d, arg = %ld\n", cmd, arg); return 0; static const struct file_operations my_dev_fops = ( .ownerTHIS_MODULE, .open-my_dev_open, .release my_dev_close, .unlocked_ioctl = my_dev_ioctl, }; /* declare & initialize struct miscdevice */ static struct miscdevice helloworld_miscdevice= .minor=MISC_DYNAMIC MINOR, .name ="mydev", .fops = &my_dev_fops, }; static int_init hello_init(void) int ret_val; pr_info("Hello world initin"); /* Register the device with the kernel */
-ret_val = misc_register(&helloworld_miscdevice); if (ret_val != 8) ( pr_err("could not register the misc device mydev"); return ret_val; pr_info("mydev: got minor %i\n",helloworld_miscdevice.minor); return ; static void _exit hello_exit(void) pr_info("Hello world exit\n"); /* unregister the device with the Kernel "/ misc_deregister(&helloworld_miscdevice); module_init(hello_init); module_exit(hello_exit); MODULE_LICENSE("GPL"); MODULE_AUTHOR("Alberto Liberal <aliberalgarroweurope.com>"); MODULE_DESCRIPTION("This is the helloworld_char_driver using misc framework");
+# /data/0523/linux/drivers/misc/misc_tee.c
+```c
+#include <linux/module.h> 
+#include <linux/miscdevice.h> 
+#include <linux/fs.h> 
 
-E0004941@E0004941DT MINGW64 /c/NoteBook/OpenSources
-$ mkdir linux_book_2nd_edition
+static int misc_tee_open(struct inode *inode, struct file *f)
+{
+    pr_info("misc_tee_open() is called.\n"); 
+    return 0;
+}
 
-E0004941@E0004941DT MINGW64 /c/NoteBook/OpenSources
-$ cd linux_book_2nd_edition/
+static int misc_tee_close(struct inode *inode, struct file *f)
+{
+    pr_info("misc_tee_close() is called.\n");
+    return 0;
+}
 
-E0004941@E0004941DT MINGW64 /c/NoteBook/OpenSources/linux_book_2nd_edition
-$ repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-morty -m imx-4.9.11-1.0.0_ga.xml
+static long misc_tee_ioctl(struct file *f, unsigned int cmd, unsigned long arg)
+{
+    pr_info("misc_tee_ioctl() is called. cmd = %d, arg = %ld\n", cmd, arg); 
+    return 0; 
+}
 
+static const struct file_operations misc_tee_fops = {
+    .owner = THIS_MODULE, 
+    .open = misc_tee_open, 
+    .release = misc_tee_close, 
+    .unlocked_ioctl = misc_tee_ioctl,
+};
 
+/* declare & initialize struct miscdevice */ 
+static struct miscdevice tee_miscdevice= {
+    .minor = MISC_DYNAMIC_MINOR, 
+    .name ="misc_tee", 
+    .fops = &misc_tee_fops,
+}; 
 
-https://marketplace.visualstudio.com/_apis/public/gallery/publishers/xsro/vsextensions/masm-tasm/1.1.1/vspackage
-ssh://liushiwei@gerrit.eswincomputing.com:29418/eswin/e315s_security (push)
+static int __init tee_init(void)
+{
+    int ret_val; 
+    pr_info("misc_tee init\n"); 
 
-8da0eeae-f946-11ed-be56-0242ac120002
-f7cbf0e0-c772-4eaa-9d18-0b5fecfebc53
-712ae5ec-f557-11ed-a05b-0242ac120003
-$ repo init -u https: //github.com/OP-TEE/manifest.git -m default.xml
-There are two classes of clients, normal clients and supplicants. The latter is
-a helper process for the TEE to access resources in Linux, for example file
-system access. A normal client opens /dev/tee[0-9]* and a supplicant opens
-/dev/teepriv[0-9].
+    /* Register the device with the kernel */
+    ret_val = misc_register(&tee_miscdevice);
 
-Domain0 Region00          : 0x0000000002008000-0x000000000200bfff (I)
-Domain0 Region01          : 0x0000000002000000-0x0000000002007fff (I)
-Domain0 Region02          : 0x0000000080000000-0x000000008007ffff ()
-Domain0 Region03          : 0x0000000000000000-0xffffffffffffffff (R,W,X)
+    if (ret_val != 0) {
+        pr_err("could not register the misc device misc_tee"); 
+        return ret_val; 
+    }
 
-init_coldboot(scratch, hartid) 在冷启动期间初始化OpenSBI
-	sbi_scratch_init(scratch)	为每个有效的harid初始化scratch指针于hartid_to_scratch_table数组，并更新last_hartid_having_scratch为最后一个有效的hartid
-	sbi_domain_init(scratch, hartid)	通过设置内存区域，引导hartid和可能分配的hart来初始化root domain
-	sbi_scratch_alloc_offset(__SIZEOF_POINTER__)	在	scratch空间中分配一个偏移量用于存储一个指针(跟踪init_coldboot被调用的次数)
-	sbi_hsm_init(scratch, hartid, TRUE) 初始化每个hart的状态数据
-	sbi_platform_early_init(plat, TRUE) 为当前hart执行早期初始化, do nothing
-	sbi_hart_init(scratch, TRUE) 检测hart特性(H)并为hart_features结构分配scratch内存，然后重新初始化hart
-	sbi_console_init(scratch) 初始化SBI实现的控制台设备 
-	sbi_pmu_init(scratch, TRUE) 初始化hart的性能监视器PMU
-	sbi_boot_print_banner(scratch) 在控制台打印OpenSBI版本以及一个标语
-	sbi_irqchip_init(scratch, TRUE) 初始化OpenSBI库中的中断控制器，如果设置了ext_irqfn，则启用机器外部中断
-	sbi_ipi_init(scratch, TRUE) 初始化当前hart的IPI(进程间中断)并启用软件中断
-	sbi_tlb_init(scratch, TRUE) 初始化TLB子系统，为TLB同步计数器、TLB FIFO队列和TLB FIFO内存分配内存(计数器为0,分配的内存初始化队列)。
-	sbi_ipi_init(scratch, TRUE) 初始化计时器设备并将时间差设置为0
-	sbi_ecall_init() 用结构体sbi_ecall_extension注册ecall扩展
-	sbi_domain_finalize(scratch, hartid) 初始化和填充平台的域(next_addr、next_mode和next_arg1(设置为设备树blob的地址))
-	sbi_hart_pmp_configure(scratch) 配置当前hart的PMP(物理内存保护)，遍历当前区域的内存区域并设置PMP标志
-	sbi_platform_final_init(plat, TRUE)	用于当前hart的最终初始化
-	sbi_boot_print_general(scratch) 打印各种平台、固件和SBI细节
-	sbi_boot_print_domains(scratch)	打印系统中所有域的信息(名称、ID以及属于每个域的hart)
-	sbi_boot_print_hart(scratch, hartid) 打印启动hart的详细信息
-	wake_coldboot_harts(scratch, hartid) 唤醒所有等待冷启动完成的(其他)hart
-	sbi_scratch_offset_ptr(scratch, init_count_offset) (*init_count)++ 记录boot(cold/warm)init的次数
-	eswin_sme_init
-	tee_os_domain_set
-	tee_os_init
-	ree_os_domain_set
-	sbi_hsm_prepare_next_jump(scratch, hartid) 将hart的HSM状态由PENDING改为STARTED
-	sbi_hart_switch_mode(hartid, scratch->next_arg1, scratch->next_addr, scratch->next_mode, FALSE) 切换hart模式到next_mode
+    pr_info("misc_tee: got minor %d\n",tee_miscdevice.minor);
+    return 0; 
+}
+
+static void __exit tee_exit(void)
+{
+    pr_info("misc_tee exit\n"); 
+    /* unregister the device with the Kernel */ 
+    misc_deregister(&tee_miscdevice); 
+} 
+
+module_init(tee_init); 
+module_exit(tee_exit); 
+
+MODULE_LICENSE("GPL"); 
+MODULE_AUTHOR("JGK"); 
+MODULE_DESCRIPTION("This is the minitee_char_driver using misc framework");
+```
+
+# /data/0523/linux/drivers/misc/Kconfig
+```
+config MISC_TEE
+	tristate "MISC_TEE"
+	default y
+	help
+		This is a simple miscellaneous device driver for tee.
+```
+
+# /data/0523/linux/drivers/misc/Makefile
+```
+obj-$(CONFIG_MISC_TEE)	+= misc_tee.o
+```
