@@ -1,6 +1,6 @@
 2023-06-06 15:53
 Hi,
-
+make ARCH=riscv defconfig KBUILD_DEFCONFIG=arch/riscv/configs/defconfig
 新项目分支a510-minios基于a710-tee已创建。
 
 
