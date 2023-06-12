@@ -1,3 +1,7 @@
+repo init -u ssh://liushiwei@gerrit.eswincomputing.com:29418/platform/manifest -b a710-sdk-d_dev --repo-url=ssh://liushiwei@gerrit.eswincomputing.com:29418/tools/git-repo
+repo sync -cdj4 --no-tags
+
+
 #! /bin/bash
   ../qemu/bin/qemu-system-riscv64 -machine virt -m 256M -nographic \
  	-bios ../opensbi/build/platform/generic/firmware/fw_jump.bin \
