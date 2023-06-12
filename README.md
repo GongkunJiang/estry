@@ -1,3 +1,12 @@
+#! /bin/bash
+  ../qemu/bin/qemu-system-riscv64 -machine virt -m 256M -nographic \
+ 	-bios ../opensbi/build/platform/generic/firmware/fw_jump.bin \
+ 	-kernel ../linux/arch/riscv/boot/Image \
+ 	-drive file=../busybox/rootfs.img,format=raw,id=hd0 \
+ 	-device virtio-blk-device,drive=hd0 \
+ 	-append "root=/dev/vda rw console=ttyS0" -gdb tcp::9527
+
+
 http://gerrit.eswincomputing.com/c/riscv/opensbi/+/27819
 http://gerrit.eswincomputing.com/c/linaro-swg/linux/+/27823
 http://gerrit.eswincomputing.com/c/OP-TEE/build/+/27828
