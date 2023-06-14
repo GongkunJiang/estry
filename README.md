@@ -15,6 +15,37 @@ http://gerrit.eswincomputing.com/c/riscv/opensbi/+/27819
 http://gerrit.eswincomputing.com/c/linaro-swg/linux/+/27823
 http://gerrit.eswincomputing.com/c/OP-TEE/build/+/27828
 
+示例11.2_3
+文件src\a.c
+#include <stdio.h>
+int a = 100;
+int b=0;
+int c=0;
+int d=1;
+int main()
+{
+printf( "&a=%p\n", &a );
+printf( "&b=%p\n", &b );
+printf( "&c=%p\n", &c );
+printf( "&d=%p\n", &d );
+return 0;
+}
+文件lds\a.lds
+a = 10;  /* 全局位置 */
+SECTIONS
+{
+b  = 11;
+.text  :
+{
+*(.text)
+c = .;  /* section描述内 */
+. =  10000 ;
+d = .;
+}
+_bdata = (. + 3) & ~ 4;  /* SECTIONS命令内 */
+.data : { *(.data) }
+}
+
 /* SPDX-License-Identifier: BSD-2-Clause */
 #ifdef RV32
 OUTPUT_FORMAT("elf32-littleriscv")
