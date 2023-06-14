@@ -15,6 +15,13 @@ http://gerrit.eswincomputing.com/c/riscv/opensbi/+/27819
 http://gerrit.eswincomputing.com/c/linaro-swg/linux/+/27823
 http://gerrit.eswincomputing.com/c/OP-TEE/build/+/27828
 
+- -E: This option tells the compiler to stop after the preprocessing stage and output the result to stdout.
+- -P: This option tells the compiler to disable linemarker generation in the output. Linemarkers are used by the compiler to indicate the original source file and line number of each line in the output. Disabling them can make the output easier to parse.
+- -: This tells the compiler to read the input from stdin.
+- <$^: This is a Makefile automatic variable that expands to the name of the first prerequisite of the rule. In other words, it's the name of the input file.
+- >$@: This tells the compiler to write the output to the target file, which is the name of the rule.
+
+
 示例11.2_3
 文件src\a.c
 #include <stdio.h>
