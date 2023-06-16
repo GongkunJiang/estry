@@ -15,6 +15,49 @@ http://gerrit.eswincomputing.com/c/riscv/opensbi/+/27819
 http://gerrit.eswincomputing.com/c/linaro-swg/linux/+/27823
 http://gerrit.eswincomputing.com/c/OP-TEE/build/+/27828
 
+To retrieve the archive signature:
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+# or
+wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+# Fingerprint: 6084 F3CF 814B 57C1 CF12 EFD5 15CF 4D18 AF4F 7421
+
+
+To install just clang, lld and lldb (15 release):
+apt-get install clang-15 lldb-15 lld-15
+
+
+To install all key packages:
+# LLVM
+apt-get install libllvm-15-ocaml-dev libllvm15 llvm-15 llvm-15-dev llvm-15-doc llvm-15-examples llvm-15-runtime
+# Clang and co
+apt-get install clang-15 clang-tools-15 clang-15-doc libclang-common-15-dev libclang-15-dev libclang1-15 clang-format-15 python3-clang-15 clangd-15 clang-tidy-15
+# compiler-rt
+apt-get install libclang-rt-15-dev
+# polly
+apt-get install libpolly-15-dev
+# libfuzzer
+apt-get install libfuzzer-15-dev
+# lldb
+apt-get install lldb-15
+# lld (linker)
+apt-get install lld-15
+# libc++
+apt-get install libc++-15-dev libc++abi-15-dev
+# OpenMP
+apt-get install libomp-15-dev
+# libclc
+apt-get install libclc-15-dev
+# libunwind
+apt-get install libunwind-15-dev
+# mlir
+apt-get install libmlir-15-dev mlir-15-tools
+# bolt
+apt-get install libbolt-15-dev bolt-15
+# flang
+apt-get install flang-15
+# wasm support
+apt-get install libclang-rt-15-dev-wasm32 libclang-rt-15-dev-wasm64 libc++-15-dev-wasm32 libc++abi-15-dev-wasm32 libclang-rt-15-dev-wasm32 libclang-rt-15-dev-wasm64
+
 1.2.1.2.1. Install Dependencies
 We tested Keystone with QEMU Ubuntu 16.04/18.04 and derivatives.
 
