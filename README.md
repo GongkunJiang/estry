@@ -15,6 +15,29 @@ http://gerrit.eswincomputing.com/c/riscv/opensbi/+/27819
 http://gerrit.eswincomputing.com/c/linaro-swg/linux/+/27823
 http://gerrit.eswincomputing.com/c/OP-TEE/build/+/27828
 
+1.2.1.2.1. Install Dependencies
+We tested Keystone with QEMU Ubuntu 16.04/18.04 and derivatives.
+
+1.2.1.2.1.1. Ubuntu
+sudo apt update
+sudo apt install autoconf automake autotools-dev bc \
+bison build-essential curl expat libexpat1-dev flex gawk gcc git \
+gperf libgmp-dev libmpc-dev libmpfr-dev libtool texinfo tmux \
+patchutils zlib1g-dev wget bzip2 patch vim-common lbzip2 python3 \
+pkg-config libglib2.0-dev libpixman-1-dev libssl-dev screen \
+device-tree-compiler expect makeself unzip cpio rsync cmake ninja-build p7zip-full
+Note
+
+You need Git version >= 2.11.0 to use ./fast-setup.sh, because the script uses --shallow-clone for faster submodule initializtion.
+
+In order to use the Rust version of the security monitor (only available for 0.X versions), you will also need to install rustup and llvm-9 (available in Ubuntu repositories in versions 18.04 and above). Then, run the following commands:
+
+rustup toolchain install nightly
+rustup +nightly component add rust-src
+rustup +nightly target add riscv64gc-unknown-none-elf
+cargo +nightly install cargo-xbuild
+
+
 - -E: This option tells the compiler to stop after the preprocessing stage and output the result to stdout.
 - -P: This option tells the compiler to disable linemarker generation in the output. Linemarkers are used by the compiler to indicate the original source file and line number of each line in the output. Disabling them can make the output easier to parse.
 - -: This tells the compiler to read the input from stdin.
