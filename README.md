@@ -1,285 +1,93 @@
-repo init -u ssh://liushiwei@gerrit.eswincomputing.com:29418/platform/manifest -b a710-sdk-d_dev --repo-url=ssh://liushiwei@gerrit.eswincomputing.com:29418/tools/git-repo
-repo sync -cdj4 --no-tags
+// SPDX-License-Identifier: BSD-2-Clause
+/*
+ * Copyright 2022 NXP
+ */
 
+#include <riscv.h>
+#include <sbi.h>
 
-#! /bin/bash
-  ../qemu/bin/qemu-system-riscv64 -machine virt -m 256M -nographic \
- 	-bios ../opensbi/build/platform/generic/firmware/fw_jump.bin \
- 	-kernel ../linux/arch/riscv/boot/Image \
- 	-drive file=../busybox/rootfs.img,format=raw,id=hd0 \
- 	-device virtio-blk-device,drive=hd0 \
- 	-append "root=/dev/vda rw console=ttyS0" -gdb tcp::9527
+struct sbiret {
+	long error;
+	long value;
+};
 
+#define _sbi_ecall(ext, fid, arg0, arg1, arg2, arg3, arg4, arg5, ...) ({  \
+	register unsigned long a0 asm("a0") = (unsigned long)arg0; \
+	register unsigned long a1 asm("a1") = (unsigned long)arg1; \
+	register unsigned long a2 asm("a2") = (unsigned long)arg2; \
+	register unsigned long a3 asm("a3") = (unsigned long)arg3; \
+	register unsigned long a4 asm("a4") = (unsigned long)arg4; \
+	register unsigned long a5 asm("a5") = (unsigned long)arg5; \
+	register unsigned long a6 asm("a6") = (unsigned long)fid;  \
+	register unsigned long a7 asm("a7") = (unsigned long)ext;  \
+	asm volatile ("ecall" \
+		: "+r" (a0), "+r" (a1) \
+		: "r" (a2), "r" (a3), "r" (a4), "r" (a5), "r"(a6), "r"(a7) \
+		: "memory"); \
+	(struct sbiret){ .error = a0, .value = a1 }; \
+})
 
-http://gerrit.eswincomputing.com/c/riscv/opensbi/+/27819
-http://gerrit.eswincomputing.com/c/linaro-swg/linux/+/27823
-http://gerrit.eswincomputing.com/c/OP-TEE/build/+/27828
+#define sbi_ecall(...) _sbi_ecall(__VA_ARGS__, 0, 0, 0, 0, 0, 0, 0)
 
-To retrieve the archive signature:
-wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-# or
-wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
-# Fingerprint: 6084 F3CF 814B 57C1 CF12 EFD5 15CF 4D18 AF4F 7421
-
-
-To install just clang, lld and lldb (16 release):
-apt-get install clang-16 lldb-16 lld-16
-
-
-To install all key packages:
-# LLVM
-apt-get install libllvm-16-ocaml-dev libllvm16 llvm-16 llvm-16-dev llvm-16-doc llvm-16-examples llvm-16-runtime
-# Clang and co
-apt-get install clang-16 clang-tools-16 clang-16-doc libclang-common-16-dev libclang-16-dev libclang1-16 clang-format-16 python3-clang-16 clangd-16 clang-tidy-16
-# compiler-rt
-apt-get install libclang-rt-16-dev
-# polly
-apt-get install libpolly-16-dev
-# libfuzzer
-apt-get install libfuzzer-16-dev
-# lldb
-apt-get install lldb-16
-# lld (linker)
-apt-get install lld-16
-# libc++
-apt-get install libc++-16-dev libc++abi-16-dev
-# OpenMP
-apt-get install libomp-16-dev
-# libclc
-apt-get install libclc-16-dev
-# libunwind
-apt-get install libunwind-16-dev
-# mlir
-apt-get install libmlir-16-dev mlir-16-tools
-# bolt
-apt-get install libbolt-16-dev bolt-16
-# flang
-apt-get install flang-16
-# wasm support
-apt-get install libclang-rt-16-dev-wasm32 libclang-rt-16-dev-wasm64 libc++-16-dev-wasm32 libc++abi-16-dev-wasm32 libclang-rt-16-dev-wasm32 libclang-rt-16-dev-wasm64
-
-To retrieve the archive signature:
-wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-# or
-wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
-# Fingerprint: 6084 F3CF 814B 57C1 CF12 EFD5 15CF 4D18 AF4F 7421
-
-
-To install just clang, lld and lldb (15 release):
-apt-get install clang-15 lldb-15 lld-15
-
-
-To install all key packages:
-# LLVM
-apt-get install libllvm-15-ocaml-dev libllvm15 llvm-15 llvm-15-dev llvm-15-doc llvm-15-examples llvm-15-runtime
-# Clang and co
-apt-get install clang-15 clang-tools-15 clang-15-doc libclang-common-15-dev libclang-15-dev libclang1-15 clang-format-15 python3-clang-15 clangd-15 clang-tidy-15
-# compiler-rt
-apt-get install libclang-rt-15-dev
-# polly
-apt-get install libpolly-15-dev
-# libfuzzer
-apt-get install libfuzzer-15-dev
-# lldb
-apt-get install lldb-15
-# lld (linker)
-apt-get install lld-15
-# libc++
-apt-get install libc++-15-dev libc++abi-15-dev
-# OpenMP
-apt-get install libomp-15-dev
-# libclc
-apt-get install libclc-15-dev
-# libunwind
-apt-get install libunwind-15-dev
-# mlir
-apt-get install libmlir-15-dev mlir-15-tools
-# bolt
-apt-get install libbolt-15-dev bolt-15
-# flang
-apt-get install flang-15
-# wasm support
-apt-get install libclang-rt-15-dev-wasm32 libclang-rt-15-dev-wasm64 libc++-15-dev-wasm32 libc++abi-15-dev-wasm32 libclang-rt-15-dev-wasm32 libclang-rt-15-dev-wasm64
-
-1.2.1.2.1. Install Dependencies
-We tested Keystone with QEMU Ubuntu 16.04/18.04 and derivatives.
-
-1.2.1.2.1.1. Ubuntu
-sudo apt update
-sudo apt install autoconf automake autotools-dev bc \
-bison build-essential curl expat libexpat1-dev flex gawk gcc git \
-gperf libgmp-dev libmpc-dev libmpfr-dev libtool texinfo tmux \
-patchutils zlib1g-dev wget bzip2 patch vim-common lbzip2 python3 \
-pkg-config libglib2.0-dev libpixman-1-dev libssl-dev screen \
-device-tree-compiler expect makeself unzip cpio rsync cmake ninja-build p7zip-full
-Note
-
-You need Git version >= 2.11.0 to use ./fast-setup.sh, because the script uses --shallow-clone for faster submodule initializtion.
-
-In order to use the Rust version of the security monitor (only available for 0.X versions), you will also need to install rustup and llvm-9 (available in Ubuntu repositories in versions 18.04 and above). Then, run the following commands:
-
-rustup toolchain install nightly
-rustup +nightly component add rust-src
-rustup +nightly target add riscv64gc-unknown-none-elf
-cargo +nightly install cargo-xbuild
-
-
-- -E: This option tells the compiler to stop after the preprocessing stage and output the result to stdout.
-- -P: This option tells the compiler to disable linemarker generation in the output. Linemarkers are used by the compiler to indicate the original source file and line number of each line in the output. Disabling them can make the output easier to parse.
-- -: This tells the compiler to read the input from stdin.
-- <$^: This is a Makefile automatic variable that expands to the name of the first prerequisite of the rule. In other words, it's the name of the input file.
-- >$@: This tells the compiler to write the output to the target file, which is the name of the rule.
-
-
-示例11.2_3
-文件src\a.c
-#include <stdio.h>
-int a = 100;
-int b=0;
-int c=0;
-int d=1;
-int main()
+void sbi_console_putchar(int ch)
 {
-printf( "&a=%p\n", &a );
-printf( "&b=%p\n", &b );
-printf( "&c=%p\n", &c );
-printf( "&d=%p\n", &d );
-return 0;
+	sbi_ecall(SBI_EXT_0_1_CONSOLE_PUTCHAR, (unsigned long)ch);
 }
-文件lds\a.lds
-a = 10;  /* 全局位置 */
-SECTIONS
+
+int sbi_boot_hart(uint32_t hart_id, paddr_t start_addr, unsigned long arg)
 {
-b  = 11;
-.text  :
-{
-*(.text)
-c = .;  /* section描述内 */
-. =  10000 ;
-d = .;
+	struct sbiret ret;
+
+	ret = sbi_ecall(SBI_EXT_HSM, SBI_EXT_HSM_HART_START, hart_id, start_addr, arg);
+
+	return ret.error;
 }
-_bdata = (. + 3) & ~ 4;  /* SECTIONS命令内 */
-.data : { *(.data) }
-}
+
+
 
 /* SPDX-License-Identifier: BSD-2-Clause */
-#ifdef RV32
-OUTPUT_FORMAT("elf32-littleriscv")
-OUTPUT_ARCH(riscv)
-#endif
-#ifdef RV64
-OUTPUT_FORMAT("elf64-littleriscv")
-OUTPUT_ARCH(riscv)
-#endif
+/*
+ * Copyright 2022 NXP
+ */
 
-#ifndef CFG_FTRACE_BUF_SIZE
-#define CFG_FTRACE_BUF_SIZE 2048
-#endif
+#ifndef SBI_H
+#define SBI_H
 
-SECTIONS {
-	.ta_head : {*(.ta_head)}
-	.text : {
-		__text_start = .;
-		*(.text .text.*)
-		*(.stub)
-		*(.gnu.linkonce.t.*)
-		__text_end = .;
-	}
-	.note.gnu.property : { *(.note.gnu.property) }
-        .plt : { *(.plt) }
+#if defined(CFG_RISCV_SBI)
 
-	.eh_frame_hdr : {
-		*(.eh_frame_hdr)
-		*(.eh_frame_entry .eh_frame_entry.*)
-	}
-	.eh_frame : { KEEP(*(.eh_frame)) *(.eh_frame.*) }
-	.gcc_except_table : { *(.gcc_except_table .gcc_except_table.*) }
-	.rodata : {
-		*(.gnu.linkonce.r.*)
-		*(.rodata .rodata.*)
-	}
-        .ctors : { *(.ctors) }
-        .dtors : { *(.dtors) }
-	.dynsym : { *(.dynsym) }
-	.dynstr : { *(.dynstr) }
-	.hash : { *(.hash) }
+/* SBI return error codes */
+#define SBI_SUCCESS			 0
+#define SBI_ERR_FAILURE			-1
+#define SBI_ERR_NOT_SUPPORTED		-2
+#define SBI_ERR_INVALID_PARAM		-3
+#define SBI_ERR_DENIED			-4
+#define SBI_ERR_INVALID_ADDRESS		-5
+#define SBI_ERR_ALREADY_AVAILABLE	-6
+#define SBI_ERR_ALREADY_STARTED		-7
+#define SBI_ERR_ALREADY_STOPPED		-8
 
-	/* Page align to allow dropping execute bit for RW data */
-	. = ALIGN(4096);
+/* SBI Extension IDs */
+#define SBI_EXT_0_1_CONSOLE_PUTCHAR	0x01, 0
+#define SBI_EXT_HSM			0x48534D
 
-	.dynamic : { *(.dynamic) }
-	.tdata : { *(.tdata .tdata.* .gnu.linkonce.td.*) }
-	.tbss : { *(.tbss .tbss.* .gnu.linkonce.tb.*) *(.tcommon) }
-	.got : { *(.got.plt) *(.got) }
-	.rel.text : { *(.rel.text) *(.rel.gnu.linkonce.t*) }
-	.rela.text : { *(.rela.text) *(.rela.gnu.linkonce.t*) }
-	.rel.data : { *(.rel.data) *(.rel.gnu.linkonce.d*) }
-	.rela.data : { *(.rela.data) *(.rela.gnu.linkonce.d*) }
-	.rel.tdata : { *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*) }
-	.rela.tdata : { *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*) }
-	.rel.tbss : { *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*) }
-	.rela.tbss : { *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*) }
-	.rel.rodata : { *(.rel.rodata) *(.rel.gnu.linkonce.r*) }
-	.rela.rodata : { *(.rela.rodata) *(.rela.gnu.linkonce.r*) }
-	.rel.dyn : { *(.rel.dyn) }
-	.rel.got : { *(.rel.got) }
-	.rela.got : { *(.rela.got) }
-	.rel.ctors : { *(.rel.ctors) }
-	.rela.ctors : { *(.rela.ctors) }
-	.rel.dtors : { *(.rel.dtors) }
-	.rela.dtors : { *(.rela.dtors) }
-	.rel.init : { *(.rel.init) }
-	.rela.init : { *(.rela.init) }
-	.rel.fini : { *(.rel.fini) }
-	.rela.fini : { *(.rela.fini) }
-	.rel.bss : { *(.rel.bss) }
-	.rela.bss : { *(.rela.bss) }
-	.rel.plt : { *(.rel.plt) }
-	.rela.plt : { *(.rela.plt) }
+/* SBI function IDs for HSM extension */
+#define SBI_EXT_HSM_HART_START		U(0)
+#define SBI_EXT_HSM_HART_STOP		U(1)
+#define SBI_EXT_HSM_HART_GET_STATUS	U(2)
+#define SBI_EXT_HSM_HART_SUSPEND	U(3)
 
-	.data : { *(.data .data.* .gnu.linkonce.d.*) }
-	.bss : {
-		*(.bss .bss.* .gnu.linkonce.b.* COMMON)
+#ifndef __ASSEMBLER__
 
-		/*
-		 * TA tracing using ftrace
-		 * Reserve some space for the ftrace buffer, only if the
-		 * TA is instrumented (i.e., some files were built with -pg).
-		 */
-		. = ALIGN(8);
-		__ftrace_buf_start = .;
-		. += DEFINED(MCOUNT_SYM) ?
-			CFG_FTRACE_BUF_SIZE : 0;
-		__ftrace_buf_end = .;
-	}
+#include <compiler.h>
+#include <encoding.h>
+#include <stdint.h>
+#include <sys/cdefs.h>
+#include <types_ext.h>
+#include <util.h>
 
-	/DISCARD/ : { *(.interp) }
-}
+void sbi_console_putchar(int ch);
+int sbi_boot_hart(uint32_t hart_id, paddr_t start_addr, unsigned long arg);
 
-
-
-
-
-#
-# Use 'blkid' to print the universally unique identifier for a
-# device; this may be used with UUID= as a more robust way to name devices
-# that works even if disks are added and removed. See fstab(5).
-#
-# <file system> <mount point>   <type>  <options>       <dump>  <pass>
-proc            /proc   proc    defaults    0   0
-sysfs           /sys    sysfs   defaults    0   0
-tmpfs           /var    tmpfs   defaults    0   0
-tmpfs           /tmp    tmpfs   defaults    0   0
-tmpfs           /dev    tmpfs   defaults    0   0
-
-	
-	
-#!/bin/sh
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-runlevel=S
-prevlevel=N
-umask 022
-export PATH runlevel prevlevel
-mount -a
-mdev -s
-	
+#endif /*__ASSEMBLER__*/
+#endif /*defined(CFG_RISCV_SBI)*/
+#endif /*SBI_H*/
