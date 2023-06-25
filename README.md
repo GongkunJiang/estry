@@ -3,91 +3,63 @@
  * Copyright 2022 NXP
  */
 
+#include <assert.h>
+#include <compiler.h>
+#include <config.h>
+#include <console.h>
+#include <drivers/serial.h>
+#include <kernel/spinlock.h>
 #include <riscv.h>
 #include <sbi.h>
-
-struct sbiret {
-	long error;
-	long value;
-};
-
-#define _sbi_ecall(ext, fid, arg0, arg1, arg2, arg3, arg4, arg5, ...) ({  \
-	register unsigned long a0 asm("a0") = (unsigned long)arg0; \
-	register unsigned long a1 asm("a1") = (unsigned long)arg1; \
-	register unsigned long a2 asm("a2") = (unsigned long)arg2; \
-	register unsigned long a3 asm("a3") = (unsigned long)arg3; \
-	register unsigned long a4 asm("a4") = (unsigned long)arg4; \
-	register unsigned long a5 asm("a5") = (unsigned long)arg5; \
-	register unsigned long a6 asm("a6") = (unsigned long)fid;  \
-	register unsigned long a7 asm("a7") = (unsigned long)ext;  \
-	asm volatile ("ecall" \
-		: "+r" (a0), "+r" (a1) \
-		: "r" (a2), "r" (a3), "r" (a4), "r" (a5), "r"(a6), "r"(a7) \
-		: "memory"); \
-	(struct sbiret){ .error = a0, .value = a1 }; \
-})
-
-#define sbi_ecall(...) _sbi_ecall(__VA_ARGS__, 0, 0, 0, 0, 0, 0, 0)
-
-void sbi_console_putchar(int ch)
-{
-	sbi_ecall(SBI_EXT_0_1_CONSOLE_PUTCHAR, (unsigned long)ch);
-}
-
-int sbi_boot_hart(uint32_t hart_id, paddr_t start_addr, unsigned long arg)
-{
-	struct sbiret ret;
-
-	ret = sbi_ecall(SBI_EXT_HSM, SBI_EXT_HSM_HART_START, hart_id, start_addr, arg);
-
-	return ret.error;
-}
-
-
-
-/* SPDX-License-Identifier: BSD-2-Clause */
-/*
- * Copyright 2022 NXP
- */
-
-#ifndef SBI_H
-#define SBI_H
-
-#if defined(CFG_RISCV_SBI)
-
-/* SBI return error codes */
-#define SBI_SUCCESS			 0
-#define SBI_ERR_FAILURE			-1
-#define SBI_ERR_NOT_SUPPORTED		-2
-#define SBI_ERR_INVALID_PARAM		-3
-#define SBI_ERR_DENIED			-4
-#define SBI_ERR_INVALID_ADDRESS		-5
-#define SBI_ERR_ALREADY_AVAILABLE	-6
-#define SBI_ERR_ALREADY_STARTED		-7
-#define SBI_ERR_ALREADY_STOPPED		-8
-
-/* SBI Extension IDs */
-#define SBI_EXT_0_1_CONSOLE_PUTCHAR	0x01, 0
-#define SBI_EXT_HSM			0x48534D
-
-/* SBI function IDs for HSM extension */
-#define SBI_EXT_HSM_HART_START		U(0)
-#define SBI_EXT_HSM_HART_STOP		U(1)
-#define SBI_EXT_HSM_HART_GET_STATUS	U(2)
-#define SBI_EXT_HSM_HART_SUSPEND	U(3)
-
-#ifndef __ASSEMBLER__
-
-#include <compiler.h>
-#include <encoding.h>
-#include <stdint.h>
-#include <sys/cdefs.h>
-#include <types_ext.h>
+#include <trace.h>
 #include <util.h>
 
-void sbi_console_putchar(int ch);
-int sbi_boot_hart(uint32_t hart_id, paddr_t start_addr, unsigned long arg);
+#ifdef CFG_RISCV_SBI_CONSOLE
 
-#endif /*__ASSEMBLER__*/
-#endif /*defined(CFG_RISCV_SBI)*/
-#endif /*SBI_H*/
+struct sbi_console_data {
+	struct serial_chip chip;
+};
+
+static struct sbi_console_data console_data __nex_bss;
+static unsigned int sbi_console_global_lock __nex_bss = SPINLOCK_UNLOCK;
+
+static void sbi_console_lock_global(void)
+{
+	cpu_spin_lock(&sbi_console_global_lock);
+}
+
+static void sbi_console_unlock_global(void)
+{
+	cpu_spin_unlock(&sbi_console_global_lock);
+}
+
+static void sbi_console_flush(struct serial_chip *chip __unused)
+{
+}
+
+static void sbi_console_putc(struct serial_chip *chip __unused,
+			     int ch)
+{
+	sbi_console_lock_global();
+	sbi_console_putchar(ch);
+	sbi_console_unlock_global();
+}
+
+static const struct serial_ops sbi_console_ops = {
+	.flush = sbi_console_flush,
+	.putc = sbi_console_putc,
+};
+
+static void sbi_console_init(struct sbi_console_data *pd)
+{
+	pd->chip.ops = &sbi_console_ops;
+}
+
+void console_init(void)
+{
+	sbi_console_init(&console_data);
+	register_serial_console(&console_data.chip);
+}
+
+#endif /*CFG_RISCV_SBI_CONSOLE*/
+
