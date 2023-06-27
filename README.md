@@ -1,3 +1,6 @@
+../../toolchain/riscv-linux-toolchain/bin/riscv64-unknown-linux-gnu-cpp -P -MT out/riscv-plat-eswin/core/kern.ld -MD -MF out/riscv-plat-eswin/core/.kern.ld.d \
+        -nostdinc -isystem /data/0523/toolchain/riscv-linux-toolchain/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.1.0/include -Ilib/libutils/isoc/include -Ilib/libutils/ext/include -Ilib/libmbedtls/include -Ilib/libmbedtls/mbedtls/include -Icore/lib/libtomcrypt/include -Icore/lib/libtomcrypt/src/headers -Icore/lib/libfdt/include -Ilib/libunw/include -Icore/arch/riscv/plat-eswin/. -Iout/riscv-plat-eswin/core -D__KERNEL__ -Icore/include -include out/riscv-plat-eswin/include/generated/conf.h -Iout/riscv-plat-eswin/core/include -Icore/arch/riscv/include -mcmodel=medany -march=rv64imafd -mabi=lp64d -Wno-missing-include-dirs -DRV64=1 -D__LP64__=1 -DTRACE_LEVEL=4 -DNDEBUG -Ildelf/include -Ilib/libutee/include core/arch/riscv/plat-eswin/kern.ld.S -o out/riscv-plat-eswin/core/kern.ld
+
 #0  serial8250_uart_putc (chip=0x27c055568 <console_data+16>, ch=69) at core/drivers/serial8250_uart.c:37
 #1  0x000000027c000840 in trace_ext_puts (str=str@entry=0x27c0a4660 <stack_tmp+1632> "E/TC:0 0 c_main:25 At phys mem hello\n")
     at core/arch/riscv/kernel/trace_ext.c:41
