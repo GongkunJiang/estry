@@ -1,3 +1,14 @@
+/tmp/ccTDQwzM.o: in function `secure_monitor_init':
+/data/a510/tee/e315s/tee/spe/arch/common/main.c:38:(.text+0x16): relocation truncated to fit: R_RISCV_HI20 against `.LC0'
+/tmp/ccrnP0Gc.o: in function `trap_error':
+/data/a510/tee/e315s/tee/spe/arch/common/trap.c:27:(.text+0x40): relocation truncated to fit: R_RISCV_HI20 against `__func__.0'
+/tmp/ccsCld3Q.o: in function `eswin_getc':
+/data/a510/tee/e315s/tee/spe/arch/common/console.c:28:(.text+0x8): relocation truncated to fit: R_RISCV_HI20 against `console_dev'
+/tmp/ccfi3sUc.o: in function `ns16550_putc':
+/data/a510/tee/e315s/tee/spe/drvs/e315s-ns16550.c:59:(.text+0x52): relocation truncated to fit: R_RISCV_HI20 against symbol `uart_base' defined in .sbss section in /tmp/ccfi3sUc.o
+collect2: error: ld returned 1 exit status
+make: *** [Makefile:66: /data/a510/tee/e315s/out/tee.elf] Error 1
+
 http://gerrit.eswincomputing.com/c/eswin/tee/+/28083
 http://gerrit.eswincomputing.com/c/linaro-swg/linux/+/27823
 http://gerrit.eswincomputing.com/c/OP-TEE/build/+/27828
