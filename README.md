@@ -1,3 +1,82 @@
+tmp/ccFojBcQ.o: in function `uart_putc':
+/data/a510/tee/allinone/common/boot.c:49:(.text+0x88): relocation truncated to fit: R_RISCV_HI20 against `console_data'
+collect2: error: ld returned 1 exit status
+make: *** [Makefile:28: build/tee] Error 1
+
+#include <stddef.h>
+
+static struct uart_data console_data;
+
+struct serial_chip {
+	const struct serial_ops *ops;
+};
+
+struct serial_ops {
+	void (*putc)(struct serial_chip *chip, int ch);
+};
+typedef unsigned long int paddr_t;
+typedef unsigned long int vaddr_t;
+typedef unsigned int        uint32_t;
+struct io_pa_va {
+	paddr_t pa;
+	vaddr_t va;
+};
+
+struct uart_data {
+    struct io_pa_va base;
+    struct serial_chip chip;
+};
+
+#define container_of(ptr, type, member) \
+	(__extension__({ \
+		const typeof(((type *)0)->member) *__ptr = (ptr); \
+		(type *)((unsigned long)(__ptr) - offsetof(type, member)); \
+	}))
+
+static vaddr_t chip_to_base(struct serial_chip *chip)
+{
+	struct uart_data *pd = container_of(chip, struct uart_data, chip);
+
+	return pd->base.pa;
+}
+
+static inline void io_write32(vaddr_t addr, uint32_t val)
+{
+	*(volatile uint32_t *)addr = val;
+}
+
+static void uart_putc(struct serial_chip *chip, int ch)
+{
+	vaddr_t base = chip_to_base(chip);
+
+	/* Write out character to transmit FIFO */
+	io_write32(base, ch);
+}
+
+static const struct serial_ops uart_ops = {
+	.putc = uart_putc,
+};
+
+void console_init(void)
+{
+	/* Init UART */
+	console_data.base.pa = UART_BASE;
+	console_data.chip.ops = &uart_ops;
+	/* Register console */
+	// register_serial_console(&console_data.chip);
+}
+
+int c_main(void)
+{
+	console_init();
+	// EMSG("At phys mem hello\n");
+	return 0;
+}
+
+
+
+
+
 /tmp/ccTDQwzM.o: in function `secure_monitor_init':
 /data/a510/tee/e315s/tee/spe/arch/common/main.c:38:(.text+0x16): relocation truncated to fit: R_RISCV_HI20 against `.LC0'
 /tmp/ccrnP0Gc.o: in function `trap_error':
