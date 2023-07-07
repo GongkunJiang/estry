@@ -93,7 +93,7 @@ http://gerrit.eswincomputing.com/c/eswin/tee/+/28083
 http://gerrit.eswincomputing.com/c/linaro-swg/linux/+/27823
 http://gerrit.eswincomputing.com/c/OP-TEE/build/+/27828
 http://gerrit.eswincomputing.com/c/riscv/opensbi/+/27819
-
+http://gerrit.eswincomputing.com/c/eswin/tee/+/28083
 
 By including kern.ld.d in the Makefile, the build system ensures that any changes to the included header files will trigger a recompilation of kern.ld.S if necessary.
 ../../toolchain/riscv-linux-toolchain/bin/riscv64-unknown-linux-gnu-cpp -P -MT out/riscv-plat-eswin/core/kern.ld -MD -MF out/riscv-plat-eswin/core/.kern.ld.d \
