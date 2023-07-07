@@ -1,5 +1,3 @@
-pUJVU.Fgdv8FY:b
-jianggongkun@eswincomputing.com
 
 tmp/ccFojBcQ.o: in function `uart_putc':
 /data/a510/tee/allinone/common/boot.c:49:(.text+0x88): relocation truncated to fit: R_RISCV_HI20 against `console_data'
