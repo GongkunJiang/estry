@@ -1,3 +1,8 @@
+similarity index 100%
+rename from platform/generic/sifive/fu540.c
+rename to platform/generic/sifive_fu540.c
+
+
 http://gerrit.eswincomputing.com/c/riscv/opensbi/+/29071
 
 
