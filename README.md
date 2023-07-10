@@ -1,3 +1,8 @@
+http://gerrit.eswincomputing.com/c/linaro-swg/linux/+/27823
+http://gerrit.eswincomputing.com/c/OP-TEE/build/+/27828
+http://gerrit.eswincomputing.com/c/eswin/tee/+/29134
+http://gerrit.eswincomputing.com/c/riscv/opensbi/+/29136
+
 similarity index 100%
 rename from platform/generic/sifive/fu540.c
 rename to platform/generic/sifive_fu540.c
