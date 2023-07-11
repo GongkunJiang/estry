@@ -1,3 +1,8 @@
+data/a510/tee/core/mm/core_mmu.c:1248:13: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'core_init_mmu_map'
+ 1248 | void __weak core_init_mmu_map(unsigned long seed, struct core_mmu_config *cfg)
+      |             ^~~~~~~~~~~~~~~~~
+make: *** [Makefile:36: /data/a510/tee/out/tee] Error 1
+
 http://gerrit.eswincomputing.com/c/linaro-swg/linux/+/27823
 http://gerrit.eswincomputing.com/c/OP-TEE/build/+/27828
 http://gerrit.eswincomputing.com/c/eswin/tee/+/29134
