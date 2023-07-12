@@ -1,3 +1,8 @@
+repo init -u ssh://jianggongkun@gerrit.eswincomputing.com:29418/platform/manifest -b a510-minios --repo-url=ssh://jianggongkun@gerrit.eswincomputing.com:29418/tools/git-repo 
+repo sync -cdj4 --no-tags 
+repo forall -c git lfs pull
+
+
 data/a510/tee/core/mm/core_mmu.c:1248:13: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'core_init_mmu_map'
  1248 | void __weak core_init_mmu_map(unsigned long seed, struct core_mmu_config *cfg)
       |             ^~~~~~~~~~~~~~~~~
